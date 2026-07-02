@@ -1,8 +1,8 @@
 class KwireCli < Formula
   desc "Terminal UI and CLI for downloading reading lists from Library Genesis"
   homepage "https://github.com/tanghong123/kwire"
-  url "https://github.com/tanghong123/kwire/archive/refs/tags/v2.4.7.tar.gz"
-  sha256 "becee30b76bf61fed8b02c55bb6e5fcf2ef09132f9c5656b5d00d898ea3f8467"
+  url "https://github.com/tanghong123/kwire/archive/refs/tags/v2.4.8.tar.gz"
+  sha256 "e00df11afd2c34a2ac6a856e55a4bf4f2bc02e1e8d06583ef1798458750ff473"
   license "MIT"
   head "https://github.com/tanghong123/kwire.git", branch: "main"
 
