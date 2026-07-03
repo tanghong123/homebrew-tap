@@ -5,8 +5,8 @@ class Rowt < Formula
   sha256 "87df60a7721d6f65191ceb2590eb9ca9881290c2587389f8f8e84f2f39880dc6"
   license "MIT"
 
-  depends_on :macos
   depends_on "jq"
+  depends_on :macos
   depends_on "python@3.12"
   depends_on "sing-box"
 
