@@ -1,8 +1,8 @@
 class ClaudeReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  url "https://github.com/tanghong123/claude-replay/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "2c5f3d98f4ee578f147ff749679171713dca704b182264961c6d7e8af4be9c5e"
+  url "https://github.com/tanghong123/claude-replay/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "4290de73ef7fd7fef1736aad46b8dee975d9811720796f8847f082372b5510fc"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
