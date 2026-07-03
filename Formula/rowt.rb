@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "97ae51870224f478438720ad33661d7d076d395b72994ce9accc15f67cfc3d7d"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "cb06d4192168ab37bb3a781040cc674803d62cdf780bb4b427f7276a8d463286"
   license "MIT"
 
   depends_on "jq"
@@ -23,10 +23,10 @@ class Rowt < Formula
         rowt fetch          # download sing-box (or it uses the brew one)
         rowt onboard        # guided setup — shows the next step
 
-      CLI tools ignore the macOS system proxy. To point this shell at rowt, add
-      to your ~/.zshrc:
-        alias rowt-proxy-on='eval "$(rowt proxy env)"'
-        alias rowt-proxy-off='eval "$(rowt proxy env --off)"'
+      CLI tools ignore the macOS system proxy. To get the rowt-proxy-on /
+      rowt-proxy-off aliases (point this shell's CLI env at rowt, or clear it),
+      add this line to your ~/.zshrc (after `brew shellenv`):
+        eval "$(rowt shell-init)"
 
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
@@ -34,6 +34,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 1.0.1", shell_output("#{bin}/rowt version")
+    assert_match "rowt 1.0.2", shell_output("#{bin}/rowt version")
   end
 end
