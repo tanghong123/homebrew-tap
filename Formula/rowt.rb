@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v1.3.6.tar.gz"
-  sha256 "21391cf7448e9ce10a4d33fde157f2a453945eb8936706fe17d96a6d3ec7cbb6"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v1.3.7.tar.gz"
+  sha256 "9f4266bf9bb87c35d1687b072b5b0d7b9d8b60c4047dc049e6b17ed434dabf96"
   license "MIT"
 
   depends_on "jq"
@@ -34,6 +34,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 1.3.6", shell_output("#{bin}/rowt version")
+    assert_match "rowt 1.3.7", shell_output("#{bin}/rowt version")
   end
 end
