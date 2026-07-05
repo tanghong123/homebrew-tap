@@ -6,6 +6,16 @@ Personal Homebrew tap.
 brew tap tanghong123/tap
 ```
 
+## Casks
+
+- **crux** — on-device meeting transcription & summarization for macOS.
+  Records, transcribes (WhisperKit), diarizes speakers, dedups slides, and
+  summarizes meetings — processing on device by default, with optional cloud
+  routing for the LLM stages. Notarized; requires macOS Sonoma or newer.
+  ```bash
+  brew install --cask tanghong123/tap/crux
+  ```
+
 ## Formulae
 
 - **[rowt](https://github.com/tanghong123/rowt)** — split traffic three ways on
