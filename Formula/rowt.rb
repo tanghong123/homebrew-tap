@@ -5,6 +5,8 @@ class Rowt < Formula
   sha256 "d58f5df4acb4e840474785556d232f219ec78c3ff9c5394fe5fa7b32adc27fd2"
   license "MIT"
 
+  # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
+  depends_on "rust" => :build
   depends_on "jq"
   depends_on :macos
   depends_on "python@3.12"
@@ -14,6 +16,17 @@ class Rowt < Formula
     # rowt resolves its own dir via BASH_SOURCE (parent of bin/), so keep the
     # tree together in libexec and symlink the entry point onto PATH.
     libexec.install "bin", "config", "lima"
+
+    # Build the read-only TUI companion into libexec/bin next to bin/rowt so
+    # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
+    # Guarded so the formula still installs from older tarballs without it.
+    if File.directory?("rowt-monitor")
+      cd "rowt-monitor" do
+        system "cargo", "install", *std_cargo_args(root: libexec, path: ".")
+      end
+      bin.install_symlink libexec/"bin/rowt-monitor"
+    end
+
     bin.install_symlink libexec/"bin/rowt"
   end
 
