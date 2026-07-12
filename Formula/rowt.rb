@@ -31,7 +31,7 @@ class Rowt < Formula
   end
 
   def caveats
-    <<~EOS
+    s = <<~EOS
       First run:
         rowt fetch          # download sing-box (or it uses the brew one)
         rowt onboard        # guided setup — shows the next step
@@ -44,6 +44,20 @@ class Rowt < Formula
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
     EOS
+    # If the auto-reload/watchdog LaunchAgent is already installed, this is an
+    # upgrade: the plist is only rewritten by `watch install`, so newer agent
+    # behaviour (e.g. the liveness watchdog's StartInterval) won't take effect
+    # until it's re-run. Only nag users who actually have the agent.
+    plist = File.expand_path("~/Library/LaunchAgents/club.annaslife.rowt.watch.plist")
+    if File.exist?(plist)
+      s += <<~EOS
+
+        You have the rowt watchdog installed. Re-run this once to pick up this
+        version's auto-recover agent (a plain `brew upgrade` won't refresh it):
+          rowt watch install
+      EOS
+    end
+    s
   end
 
   test do
