@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.6.tar.gz"
-  sha256 "feb89eedff94d1d8ea82ac5816317f980b62daf82e38a2b7657ac5cb4a2342df"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.9.tar.gz"
+  sha256 "cd7b6431118bb75ae74f72bc22677c28f22069141cc09b60b8f85d2824a3ff94"
   license "MIT"
 
   # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
@@ -61,6 +61,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 2.5.6", shell_output("#{bin}/rowt version")
+    assert_match "rowt 2.5.9", shell_output("#{bin}/rowt version")
   end
 end
