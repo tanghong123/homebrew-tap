@@ -1,6 +1,6 @@
 cask "crux" do
-  version "2.2"
-  sha256 "eabe876140b83c75e70207371293db616a798b5eb44d4798c9a50d4277504088"
+  version "2.3"
+  sha256 "48de9cabae9f197a055baf9a759500640e2e58c96219e938d36b9cf9b291fd75"
 
   # DMG is hosted on the PUBLIC tap repo's Releases (not the private
   # source repo). Private-repo release assets aren't publicly
