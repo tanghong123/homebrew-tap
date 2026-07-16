@@ -1,6 +1,6 @@
 cask "kwire" do
-  version "2.5.0"
-  sha256 "aed1c9773e47ea8ea4f255b3c248b44b02557c9e56c23a4885c027820e0002d7"
+  version "2.6.0"
+  sha256 "c18116bade85843104738df5a7d016f380bbc7cf97fba67492ff39b6a15bb4a7"
 
   url "https://github.com/tanghong123/kwire/releases/download/v#{version}/Kwire_universal.app.tar.gz"
   name "Kwire"
