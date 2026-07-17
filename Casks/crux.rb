@@ -11,7 +11,7 @@ cask "crux" do
   homepage "https://github.com/tanghong123/homebrew-tap"
 
   # Notarized Developer ID build; macOS 14 (Sonoma) is the deployment floor.
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Crux.app"
 
