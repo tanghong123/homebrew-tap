@@ -1,7 +1,6 @@
 class Knack < Formula
   desc "One library of coding-agent skills, projected into every agent you use"
   homepage "https://github.com/tanghong123/homebrew-tap"
-  version "0.2.0"
   license any_of: ["Apache-2.0", "MIT"]
 
   # Only an Apple Silicon build is published so far. Without these, an unsupported
