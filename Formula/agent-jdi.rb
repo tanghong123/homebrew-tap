@@ -1,30 +1,30 @@
 class AgentJdi < Formula
   desc "Supervise unattended AI-agent (Claude, Codex) runs and follow them live"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "0.9.0"
+  version "0.10.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
   depends_on "tanghong123/tap/claude-replay"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.9.0/agent-jdi-aarch64-apple-darwin.tar.gz"
-      sha256 "4803f23893ab5853b582f743ad9385c8cf33d616345f7efc68db6c216fcb9576"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v0.10.0/agent-jdi-aarch64-apple-darwin.tar.gz"
+      sha256 "98ca645107266458d050813ad0bd8b0b212f3c17b1923ff5a8f81ab722365d12"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.9.0/agent-jdi-x86_64-apple-darwin.tar.gz"
-      sha256 "ec75581ad12578d997ba84f86a2913b932483f6f00936f459a83207bc13da3f3"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v0.10.0/agent-jdi-x86_64-apple-darwin.tar.gz"
+      sha256 "58ab8acdb248e3e28617068e12dd41c7e15c633ed7b7aba1e612bdcc4c8bcb38"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.9.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "426e593ce38a027d972c7a65c0e325e743a5a2657cb1e24e1bf97208d2b55a4e"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v0.10.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "5cfdf738a6173df39a930bc13e1d0752332b41062f844593605583d1ec48c07d"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.9.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "f4ca49edae15ac40290cc0a9fc443e234fc1fc1cea7743994b5bc227d66c84b7"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v0.10.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "ec89eab6198ea57e906766f7956cf75ee61d963de767f92ad07a40b74ce9f45e"
     end
   end
 
