@@ -16,7 +16,7 @@ class Rowt < Formula
   on_arm do
     resource "rowt-monitor" do
       url "https://github.com/tanghong123/rowt/releases/download/v3.0.2/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "418ce06653abb75e97ab3737b5c72c3ccdc501796e263e86f9be3f238e7b9404"
+      sha256 "7db8e4125ef849a1be95d145edab7db5331c7630215652b8d4920b1916bff001"
     end
   end
   on_intel do
@@ -39,7 +39,8 @@ class Rowt < Formula
     # Apple Silicon: install the prebuilt binary (no Rust build). Intel: compile
     # from the source tree. Guarded so an older tarball without it still installs.
     if Hardware::CPU.arm?
-      resource("rowt-monitor").stage { (libexec/"bin").install "rowt-monitor" }
+      # the TUI *and* its traffic-metrics collector sidecar (both prebuilt)
+      resource("rowt-monitor").stage { (libexec/"bin").install "rowt-monitor", "rowt-collector" }
       bin.install_symlink libexec/"bin/rowt-monitor"
     elsif File.directory?("rowt-monitor")
       cd "rowt-monitor" do
