@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.16.tar.gz"
-  sha256 "21813ac8069391e45a4008dc100b24d83c4b3d486c4c769c1ad413c68536a99f"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.19.tar.gz"
+  sha256 "342c8294277cdfdf939722e582466217c4666447d671c69f48bbac7b78cf9568"
   license "MIT"
 
   # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
@@ -14,8 +14,11 @@ class Rowt < Formula
 
   def install
     # rowt resolves its own dir via BASH_SOURCE (parent of bin/), so keep the
-    # tree together in libexec and symlink the entry point onto PATH.
+    # tree together in libexec and symlink the entry point onto PATH. The docs go
+    # in too so `rowt onboard` / the "rowt" agent skill can point at them on disk
+    # (README = full user guide, DESIGN = how the routing works).
     libexec.install "bin", "config", "lima"
+    libexec.install "README.md", "DESIGN.md" if File.exist?("README.md")
 
     # Build the read-only TUI companion into libexec/bin next to bin/rowt so
     # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
@@ -61,6 +64,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 2.5.16", shell_output("#{bin}/rowt version")
+    assert_match "rowt 2.5.19", shell_output("#{bin}/rowt version")
   end
 end
