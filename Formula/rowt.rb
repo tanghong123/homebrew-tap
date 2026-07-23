@@ -5,12 +5,23 @@ class Rowt < Formula
   sha256 "11b578028121ca5b2028ae2048e1e286e05e2880cbd7e039ed439d98647f141a"
   license "MIT"
 
-  # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
-  depends_on "rust" => :build
   depends_on "jq"
   depends_on :macos
   depends_on "python@3.12"
   depends_on "sing-box"
+
+  # The `rowt monitor` TUI is a small Rust/ratatui binary. On Apple Silicon we pour
+  # a prebuilt one so installs need NO Rust toolchain (which would pull libgit2 etc.);
+  # on Intel we still build it from source.
+  on_arm do
+    resource "rowt-monitor" do
+      url "https://github.com/tanghong123/rowt/releases/download/v3.0.2/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "418ce06653abb75e97ab3737b5c72c3ccdc501796e263e86f9be3f238e7b9404"
+    end
+  end
+  on_intel do
+    depends_on "rust" => :build
+  end
 
   def install
     # rowt resolves its own dir via BASH_SOURCE (parent of bin/), so keep the
@@ -23,10 +34,14 @@ class Rowt < Formula
     # (points at this stable opt path, so a later `brew upgrade` refreshes it).
     libexec.install "skills" if File.directory?("skills")
 
-    # Build the read-only TUI companion into libexec/bin next to bin/rowt so
+    # Put the read-only TUI companion in libexec/bin next to bin/rowt so
     # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
-    # Guarded so the formula still installs from older tarballs without it.
-    if File.directory?("rowt-monitor")
+    # Apple Silicon: install the prebuilt binary (no Rust build). Intel: compile
+    # from the source tree. Guarded so an older tarball without it still installs.
+    if Hardware::CPU.arm?
+      resource("rowt-monitor").stage { (libexec/"bin").install "rowt-monitor" }
+      bin.install_symlink libexec/"bin/rowt-monitor"
+    elsif File.directory?("rowt-monitor")
       cd "rowt-monitor" do
         system "cargo", "install", *std_cargo_args(root: libexec, path: ".")
       end
