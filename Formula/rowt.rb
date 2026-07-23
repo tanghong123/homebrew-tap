@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.0.1.tar.gz"
-  sha256 "1eccecd92b7db8034758182448c8977e53cd055f1c9fd3b6e72be04b540e6141"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.0.2.tar.gz"
+  sha256 "11b578028121ca5b2028ae2048e1e286e05e2880cbd7e039ed439d98647f141a"
   license "MIT"
 
   # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
@@ -36,6 +36,17 @@ class Rowt < Formula
     bin.install_symlink libexec/"bin/rowt"
   end
 
+  def post_install
+    # If the auto-reload/watchdog LaunchAgent is installed, refresh it so this
+    # upgrade picks up the new version and clears any launchd backoff from the
+    # binary swap (its RunAtLoad tick also recovers a router that went down during
+    # the upgrade). `watch refresh` is sudo-free and a no-op when not installed;
+    # never let it fail the install.
+    system libexec/"bin/rowt", "watch", "refresh"
+  rescue StandardError
+    nil
+  end
+
   def caveats
     s = <<~EOS
       First run:
@@ -51,23 +62,21 @@ class Rowt < Formula
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
     EOS
-    # If the auto-reload/watchdog LaunchAgent is already installed, this is an
-    # upgrade: the plist is only rewritten by `watch install`, so newer agent
-    # behaviour (e.g. the liveness watchdog's StartInterval) won't take effect
-    # until it's re-run. Only nag users who actually have the agent.
+    # The watchdog LaunchAgent is refreshed automatically on upgrade (post_install
+    # runs `rowt watch refresh`), so no manual step is needed. If that ever fails
+    # (e.g. no GUI session during the upgrade), `rowt watch install` re-syncs it.
     plist = File.expand_path("~/Library/LaunchAgents/club.annaslife.rowt.watch.plist")
     if File.exist?(plist)
       s += <<~EOS
 
-        You have the rowt watchdog installed. Re-run this once to pick up this
-        version's auto-recover agent (a plain `brew upgrade` won't refresh it):
-          rowt watch install
+        The rowt watchdog was refreshed for this version automatically. If the
+        auto-reload/recovery ever seems stale, re-sync it with:  rowt watch install
       EOS
     end
     s
   end
 
   test do
-    assert_match "rowt 3.0.1", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.0.2", shell_output("#{bin}/rowt version")
   end
 end
