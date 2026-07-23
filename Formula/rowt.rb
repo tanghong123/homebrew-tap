@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.0.4.tar.gz"
-  sha256 "026474a4adcd0115f4d6623c227394d043ba96893b6fd30ad7572ed28f219174"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.0.5.tar.gz"
+  sha256 "7e017a09b3f58da609e8b5546746cde16a9f5d21f5ecc755ebe6a32ec9c6c1f5"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.0.4/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "7db8e4125ef849a1be95d145edab7db5331c7630215652b8d4920b1916bff001"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.0.5/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "e4beebb94fab0c343ada2c087b40c91cc904bb7469bc090888f97bea4214bccc"
     end
   end
   on_intel do
@@ -72,8 +72,9 @@ class Rowt < Formula
 
       CLI tools ignore the macOS system proxy. To get the rowt-proxy-on /
       rowt-proxy-off aliases (point this shell's CLI env at rowt, or clear it),
-      add this line to your ~/.zshrc (after `brew shellenv`):
-        eval "$(rowt shell-init)"
+      enable shell integration:
+        rowt shell-init --install   # appends to ~/.zshrc (or add by hand:
+                                    #   eval "$(rowt shell-init)")
 
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
@@ -93,6 +94,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.0.4", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.0.5", shell_output("#{bin}/rowt version")
   end
 end
