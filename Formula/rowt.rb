@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.19.tar.gz"
-  sha256 "342c8294277cdfdf939722e582466217c4666447d671c69f48bbac7b78cf9568"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v2.5.20.tar.gz"
+  sha256 "6d463675e2808fbbaf17a409f00818e8412ca94a94213a363a25febd8327e05e"
   license "MIT"
 
   # Build-only: the `rowt monitor` TUI is a small Rust/ratatui binary.
@@ -19,6 +19,9 @@ class Rowt < Formula
     # (README = full user guide, DESIGN = how the routing works).
     libexec.install "bin", "config", "lima"
     libexec.install "README.md", "DESIGN.md" if File.exist?("README.md")
+    # Ship the agent skill so `rowt skill install` can link it into ~/.claude/skills
+    # (points at this stable opt path, so a later `brew upgrade` refreshes it).
+    libexec.install "skills" if File.directory?("skills")
 
     # Build the read-only TUI companion into libexec/bin next to bin/rowt so
     # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
@@ -37,6 +40,7 @@ class Rowt < Formula
     s = <<~EOS
       First run:
         rowt fetch          # download sing-box (or it uses the brew one)
+        rowt skill install  # (optional) link the rowt skill so an agent can drive setup
         rowt onboard        # guided setup — shows the next step
 
       CLI tools ignore the macOS system proxy. To get the rowt-proxy-on /
@@ -64,6 +68,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 2.5.19", shell_output("#{bin}/rowt version")
+    assert_match "rowt 2.5.20", shell_output("#{bin}/rowt version")
   end
 end
