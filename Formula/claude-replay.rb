@@ -1,29 +1,29 @@
 class ClaudeReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "0.38.0"
+  version "1.0.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.38.0/claude-replay-aarch64-apple-darwin.tar.gz"
-      sha256 "b5567fa45582d01f17366071a5f96d115e2869d5b1754549cca925a5313c078d"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.0.0/claude-replay-aarch64-apple-darwin.tar.gz"
+      sha256 "4e0c4423fd61d5eb70235a6e7a0d300bbb05a2105d32cfef605d113b07ef14f8"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.38.0/claude-replay-x86_64-apple-darwin.tar.gz"
-      sha256 "46f1c97467e32ca6f29d19ada8fc7a87367453f75c8220dbc9ce4083a12b41cf"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.0.0/claude-replay-x86_64-apple-darwin.tar.gz"
+      sha256 "795ff69c1e6834b13fb3ffdfd967a79a7f7a5233ec0bd384d603f1fb48da2646"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.38.0/claude-replay-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "3865a4fc5e70a833f069a10220688332813aa7550809335bbbe7ee20c130b14f"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.0.0/claude-replay-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "6228130fb9f26d6f4ed9ded9735d4bda2633ddedfade33320d874e2409618e22"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v0.38.0/claude-replay-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "edd5853d08893447773e913b673a09fd072112053087e3358663664ad9a73925"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.0.0/claude-replay-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "85c211e817430913d920c8551d3db50cf47419dcb9ee38856e1a3539bdc2d97c"
     end
   end
 
