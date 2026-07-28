@@ -10,8 +10,8 @@ class Knack < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.6.0/knack-0.6.0-aarch64-apple-darwin.tar.gz"
-      sha256 "a684437b9aded76e14c5f770772a9d4986b973d3fc389dc823c911737405b7b5"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.7.0/knack-0.7.0-aarch64-apple-darwin.tar.gz"
+      sha256 "408cca948829ff929a752faeb0c8b16a364a9e3ca6b00ea7ca4d783c88ea2de7"
     end
   end
 
@@ -28,8 +28,8 @@ class Knack < Formula
         knack lib migrate    # bring in the skills those agents already have
         knack lib status
 
-      Supported agents: claude, codex, qoder, qoderwork. Qoder (~/.qoder) and QoderWork
-      (~/.qoderwork) are distinct; Gemini is no longer detected.
+      Supported agents: claude, codex, gemini, qoder, qoderwork. Qoder (~/.qoder) and
+      QoderWork (~/.qoderwork) are distinct products.
 
       Coming from 0.1.0: importing no longer reaches every agent. `import`, `track`, and
       `create` land a skill in the library and stop there — pass --agent or --all-agents to
