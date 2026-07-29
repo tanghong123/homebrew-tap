@@ -1,29 +1,29 @@
 class ClaudeReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.7.2"
+  version "1.7.3"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.2/claude-replay-aarch64-apple-darwin.tar.gz"
-      sha256 "533e113cdf76235d27e2be077fe11b0f9ef757f6b0f6783332c2aacd0557ad13"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.3/claude-replay-aarch64-apple-darwin.tar.gz"
+      sha256 "b4abe9160626fa136d7cd2be8d8f6377044c5e2d04883b59e0214a0631550442"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.2/claude-replay-x86_64-apple-darwin.tar.gz"
-      sha256 "6bc68a3a9b7dba79985969a226916c0f03dae389af20f7523cef1c92dc6ae818"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.3/claude-replay-x86_64-apple-darwin.tar.gz"
+      sha256 "cb573890253838ed4eea468ab67d854a089dd6aadc287117699f807240e16764"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.2/claude-replay-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "3582b4091a6ea5cd2f329e51d0472f4e01c09218ea35b7a7f859ca5cea4a172f"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.3/claude-replay-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "137bc0f051f36e9e42756805e7e88fa8ddeb307e171ecb7db14756eca2974b39"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.2/claude-replay-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "dc341dbb64976f27ed31c352a5dcc86eef1782a6a1e399b01fed3dacab5be0ef"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.7.3/claude-replay-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "7cde51e7a934753200d69e9009e6437c480ed58357818709728adcbe07071c07"
     end
   end
 
