@@ -1,30 +1,30 @@
 class AgentJdi < Formula
   desc "Supervise unattended AI-agent (Claude, Codex) runs and follow them live"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.2.1"
+  version "1.2.2"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
   depends_on "tanghong123/tap/claude-replay"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.1/agent-jdi-aarch64-apple-darwin.tar.gz"
-      sha256 "560c81928ef7e4eb7b98d079d78bb91ce4acfd30fb77f2c5388828de439430cf"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.2/agent-jdi-aarch64-apple-darwin.tar.gz"
+      sha256 "2892ec67db1d90bb90b3ff8a357e86e414fa5e3830f7dd98bad89e977f6e67d1"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.1/agent-jdi-x86_64-apple-darwin.tar.gz"
-      sha256 "df49097938470772437d6ee8307396fd358d2043d5ee753c91f53384670a587d"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.2/agent-jdi-x86_64-apple-darwin.tar.gz"
+      sha256 "b9ae1a2e9f69423ce2d1155de6b0b87cf57f46f1dff704723887b9b69a620291"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.1/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "0ec5208a47148dcaf9f7106c513b15774a670ae1ac19d5c057174a5aedc586f0"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.2/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "8c46809f68b6b5776eaa9ef575fd89b6725ee05b36a885e194f707ba55f38d92"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.1/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "c21faea32c3c0b74948fc4dfccca6f257b48a8982c1bf916fac15a0f067018cb"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.2.2/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "aba58d1a768dd498ae66f528d5001993e0b58c1b1e23a05c9aaeeea8fee611aa"
     end
   end
 
