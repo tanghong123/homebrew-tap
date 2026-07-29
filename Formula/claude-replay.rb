@@ -1,29 +1,29 @@
 class ClaudeReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.5.0"
+  version "1.6.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.5.0/claude-replay-aarch64-apple-darwin.tar.gz"
-      sha256 "83b5ff07b5fe9a3d78667ffdebcd6677cb71771b3e676aeb71eb0f33870923d8"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.6.0/claude-replay-aarch64-apple-darwin.tar.gz"
+      sha256 "b2b1b5a3e3a0b3f67f44a2a667422dfe784ec64330cf3c23ce6c5a1587df036b"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.5.0/claude-replay-x86_64-apple-darwin.tar.gz"
-      sha256 "c06d9df0023e7dae435f41117542cf723fca96e15b2160faaaec815833a316b5"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.6.0/claude-replay-x86_64-apple-darwin.tar.gz"
+      sha256 "db3978769aa1ac2501064ee606e2890881d8a4254137de6d579560776cdda27f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.5.0/claude-replay-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "aaeae96046a3cf85a7b8cdbf1aa1537d54dea2713b234a1e1f9b2417420f3969"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.6.0/claude-replay-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "0b58f71ccda93722505fbb6632d3a622d60b0193ba23821a6f77e15013a54d3f"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.5.0/claude-replay-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "6195fe69325e60576091f813ae1cf821530e76f0b3df58706d33bb5c58d221c5"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.6.0/claude-replay-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "d729ee86f21fe77a8d85316ce27858870d8fbf8c7a4141c07bfe0f0c2cdca01d"
     end
   end
 
