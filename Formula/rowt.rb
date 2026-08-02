@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.0.10.tar.gz"
-  sha256 "9ec61256683faabb46d05c2d5a73afd697a7af3953f748607efb4c2a8017f8d7"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.1.0.tar.gz"
+  sha256 "09ce3208f64b7991704c122191a509944f8b4d5fb921e689d3686d5094e1f81c"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.0.10/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "82f02804e31fdd9a3d814b236b2d67e52de84cc50e7a975020b2b39089a13eed"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.1.0/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "84ce4d7ab3f6eaba97f435142af242eed007af47c0859f44ef87c0b6b223d94e"
     end
   end
   on_intel do
@@ -94,6 +94,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.0.10", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.1.0", shell_output("#{bin}/rowt version")
   end
 end
