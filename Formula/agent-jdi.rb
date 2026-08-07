@@ -1,30 +1,30 @@
 class AgentJdi < Formula
   desc "Supervise unattended AI-agent (Claude, Codex) runs and follow them live"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.49.0"
+  version "1.49.1"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
   depends_on "tanghong123/tap/claude-replay"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.0/agent-jdi-aarch64-apple-darwin.tar.gz"
-      sha256 "f7e0bd82ee937e53550c0e1908f4c54ba81338a218898c6dc76322b29e9404ed"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.1/agent-jdi-aarch64-apple-darwin.tar.gz"
+      sha256 "ffd5d7ba2226da469b4d73b29ef7423d6fa8961452574d9480970f7fbc6aff9a"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.0/agent-jdi-x86_64-apple-darwin.tar.gz"
-      sha256 "9082b52d5da815fee421a3e7e469fe958e79a68dc6c3ff32d5e33511fc6c4cd7"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.1/agent-jdi-x86_64-apple-darwin.tar.gz"
+      sha256 "6c279dfa693ea8d865b74fed0cddd99af243a4d28fb4439537ea6618cf694836"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "e12b062072bcfe319292f7f810968837b2883c42d2e4af1a038918227ebf1dc2"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.1/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "fbad0d3121e7816e83f389dbe05416a0e23e4e91f3020e623f70ddaa59ad6087"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "8eac83beca80490cb58d4d9743aa458089b9babba710fe86920eaa6cfd1b98da"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.49.1/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "e138838bcef85a56b518bbde2284ad687ec26e7db0f69b5d30dc8384b7e8391b"
     end
   end
 
