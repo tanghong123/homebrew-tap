@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.2.4.tar.gz"
-  sha256 "30d9f0156bd332c694633e4242e6e7bd9a8d0048c06c8646bd58ef3d31bb6b69"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.2.6.tar.gz"
+  sha256 "868fb6657318dcc68553e9b99f3cfcc047ed959d65a4b8c767d203ad3bdbb40a"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.2.4/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "12bedbc730c90886b10f8149f7d507b8c503cf41c83cb0ef315444a276953175"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.2.6/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "59bc01206acbc64c0952495c01a49ec850e8da6565f78476ed40eb2bba0f90b6"
     end
   end
   on_intel do
@@ -40,7 +40,11 @@ class Rowt < Formula
     # from the source tree. Guarded so an older tarball without it still installs.
     if Hardware::CPU.arm?
       # the TUI *and* its traffic-metrics collector sidecar (both prebuilt)
-      resource("rowt-monitor").stage { (libexec/"bin").install "rowt-monitor", "rowt-collector" }
+      resource("rowt-monitor").stage do
+        (libexec/"bin").install "rowt-monitor", "rowt-collector"
+        # Inert unless a shadow comparison is switched on (see caveats).
+        (libexec/"bin").install "rowt-render", "rowt-watch-tick"
+      end
       bin.install_symlink libexec/"bin/rowt-monitor"
     elsif File.directory?("rowt-monitor")
       cd "rowt-monitor" do
@@ -99,6 +103,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.2.4", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.2.6", shell_output("#{bin}/rowt version")
   end
 end
