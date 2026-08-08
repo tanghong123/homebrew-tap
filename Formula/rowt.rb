@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.2.1.tar.gz"
-  sha256 "acc9d590ed2908c1a4814521b80fc402567453e6b4ab2fcae7157674067f8737"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.2.3.tar.gz"
+  sha256 "fd8806c4274ebd34aabdea26c6dc2814d8fb6bfeecefb8429cf515456589a2c3"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.2.1/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "626ad8bad4b7353ec439009b0967be9d47987aa6ae474adfc7f4a42f399069df"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.2.3/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "9553012b2e2a9a47de6dc7bf9dbcd29dc09d5f5d9d0d004288dc7c45c1e02e7d"
     end
   end
   on_intel do
@@ -78,6 +78,11 @@ class Rowt < Formula
 
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
+
+      Travelling somewhere the escape lane isn't needed?
+        rowt up local       # no tunnel; block/corp/direct unchanged
+                            # (a bare `rowt up` picks this by itself)
+        rowt up host        # back to the tunnel
     EOS
     # The watchdog LaunchAgent is refreshed automatically on upgrade (post_install
     # runs `rowt watch refresh`), so no manual step is needed. If that ever fails
@@ -94,6 +99,6 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.2.1", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.2.3", shell_output("#{bin}/rowt version")
   end
 end
