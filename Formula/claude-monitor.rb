@@ -1,29 +1,29 @@
 class ClaudeMonitor < Formula
   desc "Every AI-agent session on this machine, one page, over loopback HTTP"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.51.11"
+  version "1.51.12"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.11/claude-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "10efcd94f5a9325966cb86c0ef0a06d5231ad8b878285762182d29b619e3401c"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.12/claude-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "d5f8edde00bc44544bcd1ab4743bdda46719c4e25ff1d86ac77341f0392b0a19"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.11/claude-monitor-x86_64-apple-darwin.tar.gz"
-      sha256 "cfe5b32182324685bfd42d4ddbbe8f7ff562bfbee849e41bb33b3f2611b442d3"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.12/claude-monitor-x86_64-apple-darwin.tar.gz"
+      sha256 "07af5e8efe20ea6283c3b4097a37974bd19c3223efdb72b71a2d5ec25d55575e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.11/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "adb1f502518e5edda367bcac23f3419be1af59337497c290c09425c7db29af3a"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.12/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "f0c225725d79b6646d2c2dff9305db51c02bc36b217e5672771c5930a97d443d"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.11/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "5b83e5e9eb5a37ff40272754dce308c9a90dc1a8cce5a2e3ea527d1413e21cc1"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.12/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "09da97e3bcb56b7b87642e17619bc681813a929b08151040abf9d1a824e30776"
     end
   end
 
