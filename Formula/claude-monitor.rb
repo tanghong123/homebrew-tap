@@ -1,29 +1,29 @@
 class ClaudeMonitor < Formula
   desc "Every AI-agent session on this machine, one page, over loopback HTTP"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.51.9"
+  version "1.51.10"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.9/claude-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "0bf6a48484701dd01d7c9abbcaf81a54103ef7e77bc2681b621dfa29f0e7985f"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.10/claude-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "58599a83a94493efbcb04f0148b69ae7c907f9ae8d2eee2d7980359f232ea5e6"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.9/claude-monitor-x86_64-apple-darwin.tar.gz"
-      sha256 "c6f44996f87b3bb05c3d15d45aec6f0c29fffb368d68989c552c4b5b237d414c"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.10/claude-monitor-x86_64-apple-darwin.tar.gz"
+      sha256 "e2c04f3cc09ce89a5d3bd9b666878631dd589b8f1a588352c5f9c0774299b39f"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.9/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "59997b070c74c98a01b51faa224a37fdd4d335866469bf9f2e4de86a1a839fc2"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.10/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "b784b48be52abdcb874bef966e6aa84bcee574c1b3d16d6f3af397b6b7045d23"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.9/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "9042f549d02ab7c84770b711529fd5f170d322cc39938b068ca517738631004c"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.51.10/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "0f0f47939c682234a83cb0ed4e71f7e1452ab87af492bf25b8a33bb503305680"
     end
   end
 
