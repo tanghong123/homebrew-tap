@@ -1,13 +1,12 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.3.5.tar.gz"
-  sha256 "4983bb78890a496d42e57dffe3fd9e66dd5895906b14f8f799d27c6100ba7396"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.3.7.tar.gz"
+  sha256 "19a30c35359a9930426f25d421b9d1a568669e7dbae714d3741903a6cd3a60da"
   license "MIT"
 
   depends_on "jq"
   depends_on :macos
-  depends_on "python@3.12"
   depends_on "sing-box"
 
   # The `rowt monitor` TUI is a small Rust/ratatui binary. On Apple Silicon we pour
@@ -15,8 +14,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.3.5/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "a376548ef04095b52b54bd6fd4c4856b9cd4526324bf7e6ab1c65e14fff0f030"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.3.7/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "4a823b9bfddf373813747cd126ca36c6408e146b433882ddad666237fbb0c2b2"
     end
   end
   on_intel do
@@ -44,9 +43,10 @@ class Rowt < Formula
         (libexec/"bin").install "rowt-monitor", "rowt-collector"
         # Inert unless a shadow comparison is switched on (see caveats).
         (libexec/"bin").install "rowt-render", "rowt-watch-tick"
-        # The Rust port of the CLI, under its own name. bin/rowt does not
-        # delegate to it and nothing execs it — it is here to be run side by
-        # side with the shell on the same config.
+        # The Rust port of the CLI. NOT optional since 3.3.7: bin/rowt runs
+        # it for every ported helper (`rowt-rs _py …`, `rowt-rs _splitter`),
+        # which is what let python@3.12 leave the dependency list. Also
+        # symlinked as `rowt-rust` to be run side by side with the shell.
         (libexec/"bin").install "rowt-rs"
       end
       bin.install_symlink libexec/"bin/rowt-monitor"
@@ -55,7 +55,14 @@ class Rowt < Formula
       cd "rowt-monitor" do
         system "cargo", "install", *std_cargo_args(root: libexec, path: ".")
       end
+      # rowt-rs is REQUIRED, not a companion: bin/rowt runs it for every ported
+      # helper. Without it the shell falls back to config/*.py, and python@3.12
+      # is no longer declared — so an Intel install that skipped this would fail
+      # on `server add` with "python3 not found". The sidecars (collector,
+      # render, watch-tick) stay Apple-Silicon-only; they are opt-in shadows.
+      system "cargo", "install", *std_cargo_args(root: libexec, path: "crates/rowt-cli")
       bin.install_symlink libexec/"bin/rowt-monitor"
+      bin.install_symlink libexec/"bin/rowt-rs" => "rowt-rust"
     end
 
     bin.install_symlink libexec/"bin/rowt"
@@ -120,10 +127,13 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.3.5", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.3.7", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
-    assert_match "rowt 3.3.5", shell_output("#{bin}/rowt-rust version") if Hardware::CPU.arm?
+    # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
+    # because bin/rowt needs it and python@3.12 is no longer there to fall back
+    # on. If that build path is broken, this is what says so.
+    assert_match "rowt 3.3.7", shell_output("#{bin}/rowt-rust version")
   end
 end
