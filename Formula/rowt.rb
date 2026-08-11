@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.2.7.tar.gz"
-  sha256 "35f4b63b3eac8bf45896ae529bbb09fdfd185dcdb0dde6e39f273bd4fdf1d88a"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.3.0.tar.gz"
+  sha256 "84e58488686f4555563a2007fdaa47885cb5212a206e74c80c20df542c69f6d3"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.2.7/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "030b3c97501c457ecdef9aa8257df02fcd93afd8f385bbf91774a31d61380749"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.3.0/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "2dcff266197a282dd219c4108fd0acd19d21bd910b83bd378be5eeb790b8683e"
     end
   end
   on_intel do
@@ -44,8 +44,13 @@ class Rowt < Formula
         (libexec/"bin").install "rowt-monitor", "rowt-collector"
         # Inert unless a shadow comparison is switched on (see caveats).
         (libexec/"bin").install "rowt-render", "rowt-watch-tick"
+        # The Rust port of the CLI, under its own name. bin/rowt does not
+        # delegate to it and nothing execs it — it is here to be run side by
+        # side with the shell on the same config.
+        (libexec/"bin").install "rowt-rs"
       end
       bin.install_symlink libexec/"bin/rowt-monitor"
+      bin.install_symlink libexec/"bin/rowt-rs" => "rowt-rust"
     elsif File.directory?("rowt-monitor")
       cd "rowt-monitor" do
         system "cargo", "install", *std_cargo_args(root: libexec, path: ".")
@@ -88,6 +93,18 @@ class Rowt < Formula
                             # (a bare `rowt up` picks this by itself)
         rowt up host        # back to the tunnel
     EOS
+    # Apple Silicon only — Intel builds the monitor from source and gets
+    # neither the shadow sidecars nor rowt-rust (the precedent 3.2.7 set).
+    if Hardware::CPU.arm?
+      s += <<~EOS
+
+        Preview: `rowt-rust` is this same CLI in Rust, installed beside `rowt`.
+        Nothing runs it for you and `rowt` does not delegate to it — run the two
+        side by side on the same config and compare:
+          rowt status   ·   rowt-rust status
+        If they ever disagree, that is worth reporting.
+      EOS
+    end
     # The watchdog LaunchAgent is refreshed automatically on upgrade (post_install
     # runs `rowt watch refresh`), so no manual step is needed. If that ever fails
     # (e.g. no GUI session during the upgrade), `rowt watch install` re-syncs it.
@@ -103,6 +120,10 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.2.7", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.3.0", shell_output("#{bin}/rowt version")
+    # The port bakes its version from bin/rowt at BUILD time, so a mismatch
+    # here means the prebuilt asset and the source tarball came from different
+    # commits — which is exactly the mistake worth catching before a user does.
+    assert_match "rowt 3.3.0", shell_output("#{bin}/rowt-rust version") if Hardware::CPU.arm?
   end
 end
