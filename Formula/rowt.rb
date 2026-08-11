@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.3.4.tar.gz"
-  sha256 "55545cfd87e9b573584e3f660eeeba9a1d27008365d78789224f82766eae676e"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.3.5.tar.gz"
+  sha256 "4983bb78890a496d42e57dffe3fd9e66dd5895906b14f8f799d27c6100ba7396"
   license "MIT"
 
   depends_on "jq"
@@ -15,8 +15,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.3.4/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "fcd4f28713025663cc540b6ddb7846364915401f4e8ce4e984a94d9eeebbe719"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.3.5/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "a376548ef04095b52b54bd6fd4c4856b9cd4526324bf7e6ab1c65e14fff0f030"
     end
   end
   on_intel do
@@ -120,10 +120,10 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.3.4", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.3.5", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
-    assert_match "rowt 3.3.4", shell_output("#{bin}/rowt-rust version") if Hardware::CPU.arm?
+    assert_match "rowt 3.3.5", shell_output("#{bin}/rowt-rust version") if Hardware::CPU.arm?
   end
 end
