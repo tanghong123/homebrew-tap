@@ -10,8 +10,8 @@ class Knack < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.22.1/knack-0.22.1-aarch64-apple-darwin.tar.gz"
-      sha256 "3bcdb36873c8f576d4c9568782bb96ca9b71f381208b2c846cb4e76c1a2d552a"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.23.0/knack-0.23.0-aarch64-apple-darwin.tar.gz"
+      sha256 "6b276c53f8fbf0e0fe7d7056825c4976cd1c5c696403e984b49a68ce8dca5c4d"
     end
   end
 
@@ -31,10 +31,10 @@ class Knack < Formula
       Supported agents: claude, codex, gemini, qoder, qoderwork. Qoder (~/.qoder) and
       QoderWork (~/.qoderwork) are distinct products.
 
-      Coming from 0.1.0: importing no longer reaches every agent. `import`, `track`, and
-      `create` land a skill in the library and stop there — pass --agent or --all-agents to
-      export in the same breath. And a skill nobody has vouched for is refused on the way
-      to an agent that lacks it: run `knack lib review`, or pass --force.
+      Coming from 0.22 or earlier: `remove --agent` is now `unexport`. `export` gives a
+      skill to an agent and `unexport` takes it back, leaving the library and cache alone;
+      `remove` is about library membership, and `remove --foreign` clears what another
+      tool left in an agent's directory.
     EOS
   end
 
