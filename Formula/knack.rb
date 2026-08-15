@@ -10,8 +10,8 @@ class Knack < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.23.0/knack-0.23.0-aarch64-apple-darwin.tar.gz"
-      sha256 "6b276c53f8fbf0e0fe7d7056825c4976cd1c5c696403e984b49a68ce8dca5c4d"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.24.0/knack-0.24.0-aarch64-apple-darwin.tar.gz"
+      sha256 "8647deca938a56d7f5e667849a47060602d7f9af84c4eb9a8fc349c85db5dcb9"
     end
   end
 
