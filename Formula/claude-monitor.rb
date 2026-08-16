@@ -1,29 +1,29 @@
 class ClaudeMonitor < Formula
   desc "Every AI-agent session on this machine, one page, over loopback HTTP"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.82.0"
+  version "1.83.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.82.0/claude-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "18566798ddbf805f1f59df138a35d126529365db33c08e368f74e69c1ca5e4b8"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.83.0/claude-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "77bc13ca98081735c6ef767758f549928defcb245dbe56269c6c3a6d37d8c5c5"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.82.0/claude-monitor-x86_64-apple-darwin.tar.gz"
-      sha256 "1853e3cf1031254b8c234e264610cbfc95911e78ef2f844aa2169e6960a232be"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.83.0/claude-monitor-x86_64-apple-darwin.tar.gz"
+      sha256 "b7c76123081e181e461ad5aa2efabc0c27df3909bce6fbc6a2a28ce12c0890e1"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.82.0/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "725870830d31c0779ec44459999dd6a2df5632d8fb8b7e34fb676b202a75fd98"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.83.0/claude-monitor-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "1644a7eb1de52dbdd70079112a23377b008e1387374e5ad2dfce23b842368b71"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.82.0/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "3c3bc3f60354a608b825d759305e585f49a8b9b8eecfeb0b3192462df39d800a"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.83.0/claude-monitor-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "609b42414548f338513f871e883e08bd41a7b42460c30a6e074fb87680701c6f"
     end
   end
 
