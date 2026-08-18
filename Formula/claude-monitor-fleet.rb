@@ -1,29 +1,29 @@
 class ClaudeMonitorFleet < Formula
   desc "Several machines' claude-monitor pages behind one loopback page"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.92.2"
+  version "1.93.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.92.2/claude-monitor-fleet-aarch64-apple-darwin.tar.gz"
-      sha256 "f56de45bfad83a7eeb67bedb8359bc7185d860fc9a2c689fd4706e0685554440"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.93.0/claude-monitor-fleet-aarch64-apple-darwin.tar.gz"
+      sha256 "684f6bd591bbc8f615ef034b67da79735a63d1248ee02d6ee8aaebbdd0a1e996"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.92.2/claude-monitor-fleet-x86_64-apple-darwin.tar.gz"
-      sha256 "be8406ced66449caf30d86bcf97bd5f5a094a7ef06c9a85067c960a4dff4d324"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.93.0/claude-monitor-fleet-x86_64-apple-darwin.tar.gz"
+      sha256 "cf93c9188cbe88ebb275755c0667a037be3585049010acc6975f08d1ebbfeeb9"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.92.2/claude-monitor-fleet-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "2f1171b1185022adaaec7924b8251c1c1f898eae82927b7eeaf620664f6db9c5"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.93.0/claude-monitor-fleet-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "9b63c82f32038cef9be790df7a51550b027c3a728eb14ebdf61daf4845fc23fc"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.92.2/claude-monitor-fleet-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "256799612bdd64c87946e5babaa43dacee02ab33735061c8e2ef25325fae37e1"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.93.0/claude-monitor-fleet-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "1dd6de1a5aded350332a405a9d14d8a5ae29b63dac94e6f48c3e2be8feac64d5"
     end
   end
 
