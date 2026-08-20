@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.4.6.tar.gz"
-  sha256 "67ebfa341409fb93d24f035b37dca318836defc6454d00192b5ca18613495da5"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.4.7.tar.gz"
+  sha256 "12ac2466f3273ce6d26a13bc556d65bc5cb3bfcc3612548107712cb30f75cb5f"
   license "MIT"
 
   depends_on "jq"
@@ -14,8 +14,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.4.6/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "9dfc3c145cb165dc16e836b381cf42838e29ee9cadb61c682567a9fc7391f20f"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.4.7/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "e548b1983619f164eedb64c7c32dedd2cbf0bc008b1e7f5115b24bd304108092"
     end
   end
   on_intel do
@@ -96,6 +96,12 @@ class Rowt < Formula
       to trusted devices in your tailnet policy: shared peers can use every lane,
       including corp. It never enables Funnel or binds rowt to the LAN.
 
+      On a client Mac, rowt-remote-on <host> configures the current shell and
+      rowt-remote-system-on <host> configures macOS apps; the matching -off
+      helpers undo each mode. Short Tailscale machine names are expanded through
+      MagicDNS. System mode requires sudo, preserves the existing bypass list,
+      and should not be used while the local rowt watchdog manages system proxy.
+
       Mode `vm` additionally needs Lima + socket_vmnet:
         brew install lima socket_vmnet
 
@@ -131,13 +137,13 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.4.6", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.4.7", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.4.6", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.4.7", shell_output("#{bin}/rowt-rust version")
   end
 end
