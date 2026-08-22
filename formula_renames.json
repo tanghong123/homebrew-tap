@@ -1,0 +1,5 @@
+{
+  "claude-replay": "agent-replay",
+  "claude-monitor": "agent-monitor",
+  "claude-monitor-fleet": "agent-monitor-fleet"
+}
