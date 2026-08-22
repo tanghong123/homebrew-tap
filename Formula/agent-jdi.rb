@@ -1,30 +1,30 @@
 class AgentJdi < Formula
   desc "Supervise unattended AI-agent (Claude, Codex) runs and follow them live"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.100.1"
+  version "1.101.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
-  depends_on "tanghong123/tap/claude-replay"
+  depends_on "tanghong123/tap/agent-replay"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.100.1/agent-jdi-aarch64-apple-darwin.tar.gz"
-      sha256 "293fba8c49451f6361ce65babecb9c272fb221638f642a9eef750c7efbe86e52"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-jdi-aarch64-apple-darwin.tar.gz"
+      sha256 "0d6d34d4bc9351f98bc19243733671b2e11651e699b0c746545c8489ae5b30aa"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.100.1/agent-jdi-x86_64-apple-darwin.tar.gz"
-      sha256 "08b59d87e6c69f8f4f6f097aa0c212c1e11cedf6438d3d889daa3d80c5189f2c"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-jdi-x86_64-apple-darwin.tar.gz"
+      sha256 "c9a6994b793a1cd86c457515ddfc91e486be4f5f4ff0320dc013f24174b9f137"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.100.1/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "92f4b430020921a9a2fffd022866dc45c58de370ea9888f8982880f7f58593bf"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "b67a456f9618435b3df6eeaf2aa9f09d5c4a8de0726111b8a1ee16b0e842c2e3"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.100.1/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "de4e01fc9a36a0d8c805537d23ca6d08d2f76c360f276137b575ff2119ae470b"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "361b23cc7d7abbec6f1d0e200eb66c428405ec59f587f93cb114f733bd8c5aac"
     end
   end
 
