@@ -1,35 +1,34 @@
 class AgentMonitor < Formula
   desc "Every AI-agent session on this machine, one page, over loopback HTTP"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.101.0"
+  version "1.101.1"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "243c7d0460d1fa440f2c0a1e6a666fc2283e141469f631e4e43d44ddfa14605e"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.1/agent-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "acb2e8046f40b937d08ef4ac57f90f592f8774346fc629bf7d629325e532ad29"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-monitor-x86_64-apple-darwin.tar.gz"
-      sha256 "b581a99dc47d4b76663d838c25fdbbbd9adab31d3af5c83a649d124111c3f216"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.1/agent-monitor-x86_64-apple-darwin.tar.gz"
+      sha256 "fa047f1b45c6e17dc07e731bc2e28b3d7a614019f4f051f751c53d11796c2975"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-monitor-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "f7252699dbec877284fa695f3676a4ad0a6c17a5f623097a9e250354de88486f"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.1/agent-monitor-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "db41a859e0ce67ff1b68a428b26993c184f1a755b2a476cba576318ad6dbe7ab"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.0/agent-monitor-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "da0fed5fa66837954208b4f651bca8cf96886d5fb6220ba60ae6942ef254b060"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.101.1/agent-monitor-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "1732ea2e2567154ed57da6c3cdfce2d764819bb3855bee2bec36107d1fc92685"
     end
   end
 
   def install
     bin.install "agent-monitor"
-    # Rename transition (v1.101.0): the old name keeps working as a symlink.
     bin.install_symlink bin/"agent-monitor" => "claude-monitor"
   end
 
