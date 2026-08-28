@@ -1,29 +1,29 @@
 class AgentMonitorFleet < Formula
   desc "Several machines' agent-monitor pages behind one loopback page"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.111.1"
+  version "1.112.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.111.1/agent-monitor-fleet-aarch64-apple-darwin.tar.gz"
-      sha256 "91b0b7f036b649abbb64f8a30e18603e3b9f7c253dc34f2cf5db3077123ffc45"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.112.0/agent-monitor-fleet-aarch64-apple-darwin.tar.gz"
+      sha256 "05ada954b71dbd80245d5cbcd2b5a2bf4f7a9a5967c1ff6a8c08e534c9095e4a"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.111.1/agent-monitor-fleet-x86_64-apple-darwin.tar.gz"
-      sha256 "e9ba59937de9e1b2427a50bc7a4552cf3958485f1905da32747a28b459fbd202"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.112.0/agent-monitor-fleet-x86_64-apple-darwin.tar.gz"
+      sha256 "f5eda539dfc4991a1859265596ccb835af23bc63d5e5d7446ba38aae4b33cd7e"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.111.1/agent-monitor-fleet-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "873473f868baf3a11854adc95d7cb167aa91f96520193874b41afda4538a7b1e"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.112.0/agent-monitor-fleet-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "b6b7d08f5e137996fa5a57f4aa677cff21e90dd08fffa65195dc214d1df4c41e"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.111.1/agent-monitor-fleet-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "b4df62d07782ca4702637e2dae0dc90faf7e34f368e598dbddbae958a357cf83"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.112.0/agent-monitor-fleet-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "1e99823e7e8773c4a57063389b817e50b17ea79763bfbadcca1e9ea9fa706a24"
     end
   end
 
