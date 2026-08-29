@@ -32,6 +32,11 @@ class Rowt < Formula
     # Ship the agent skill so `rowt skill install` can link it into ~/.claude/skills
     # (points at this stable opt path, so a later `brew upgrade` refreshes it).
     libexec.install "skills" if File.directory?("skills")
+    # …and the knack foreign-owner recipe next to it, so `rowt skill recipe` has
+    # something to print on a brew install: it resolves to
+    # libexec/share/knack/rowt.toml under the stable opt prefix, which is what
+    # `knack lib adopt rowt --via "rowt:$(rowt skill recipe)"` loads.
+    libexec.install "share" if File.directory?("share")
 
     # Put the read-only TUI companion in libexec/bin next to bin/rowt so
     # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
