@@ -3,9 +3,9 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine are compiled into one file and the
   # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.2.0/mdrev-0.2.0-macos.tar.gz"
-  version "0.2.0"
-  sha256 "42585fc049a36b821b978b171ca774b5196f8077170ab83cbecc265f9f0e7749"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.3.0/mdrev-0.3.0-macos.tar.gz"
+  version "0.3.0"
+  sha256 "6819a9ce5d52b9b4b315aff1d415fba3524327fc8907ba93496c3ae7932f1905"
   license "MIT"
 
   depends_on :macos
@@ -36,6 +36,14 @@ class Mdrev < Formula
 
       Select text to annotate it, or to copy it with its source attached
       (shift-cmd-C) for pasting into another document.
+
+      Review notes can be closed from the viewer or the command line:
+        mdrev --notes                  open notes across the repo
+        mdrev --resolve ID --note "…"  close one
+
+      mdrev ships the skill that teaches an agent to use it:
+        mdrev skill install
+        knack lib adopt mdrev --via mdrev:$(mdrev skill recipe)
 
       To open Markdown from Finder, build the launcher app once:
         mdrev --install-finder-app
