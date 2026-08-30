@@ -3,9 +3,9 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine are compiled into one file and the
   # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.3.1/mdrev-0.3.1-macos.tar.gz"
-  version "0.3.1"
-  sha256 "abd4e58e1c18c88ea55b0bcb13e7675058c2199cd29826bb38a6c20cc8824633"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.3.2/mdrev-0.3.2-macos.tar.gz"
+  version "0.3.2"
+  sha256 "ebf973d0df4cc6fefd8d6a6a449b7022d426c6adb142af0d701ab60ad31858c7"
   license "MIT"
 
   depends_on :macos
@@ -45,10 +45,11 @@ class Mdrev < Formula
       install itself, so adopting is the only step:
         knack lib adopt mdrev --via mdrev:$(mdrev skill recipe) --agent claude --yes
 
-      To open Markdown from Finder, build the launcher app once:
+      To open Markdown from Finder:
         mdrev --install-finder-app
-      then right-click any .md file and choose Open With > mdrev (or Get Info >
-      Open with > mdrev > Change All to make it the default).
+      macOS will ask you to confirm mdrev as the default for .md files —
+      approve it. (Since macOS 12 no tool can set that silently.) If no dialog
+      appears: Get Info on a .md file > "Open with:" > mdrev > "Change All...".
     EOS
   end
 
