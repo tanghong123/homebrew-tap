@@ -5,7 +5,7 @@ class Mdrev < Formula
   # viewer ships as built assets. It runs on node rather than embedding it.
   url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.4.2/mdrev-0.4.2-macos.tar.gz"
   version "0.4.2"
-  sha256 "b7b091685458c52158f39372628e02a7b597ed08ebd1e52362090320ad2b8cf4"
+  sha256 "8427b368bcd5dc113191f8d1e9576cb95bf50d309d7e4dcbb4e8c1f242c4b02a"
   license "MIT"
 
   depends_on :macos
