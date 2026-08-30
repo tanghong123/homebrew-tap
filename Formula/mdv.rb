@@ -3,9 +3,9 @@ class Mdv < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine are compiled into one file and the
   # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdv-0.1.1/mdv-0.1.1-macos.tar.gz"
-  version "0.1.1"
-  sha256 "a03b8b3fa5e0f1ee5b27ff11ce17e46db0a9629d3f83c4f6a3e21191d6a608ee"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdv-0.1.2/mdv-0.1.2-macos.tar.gz"
+  version "0.1.2"
+  sha256 "2ae821160a10f61a40513c84b066549022a910a4db6d8eb7000765da43dd477e"
   license "MIT"
 
   depends_on :macos
