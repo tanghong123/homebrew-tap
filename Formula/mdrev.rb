@@ -41,9 +41,9 @@ class Mdrev < Formula
         mdrev --notes                  open notes across the repo
         mdrev --resolve ID --note "…"  close one
 
-      mdrev ships the skill that teaches an agent to use it:
-        mdrev skill install
-        knack lib adopt mdrev --via mdrev:$(mdrev skill recipe)
+      mdrev ships the skill that teaches an agent to use it. knack runs the
+      install itself, so adopting is the only step:
+        knack lib adopt mdrev --via mdrev:$(mdrev skill recipe) --agent claude --yes
 
       To open Markdown from Finder, build the launcher app once:
         mdrev --install-finder-app
