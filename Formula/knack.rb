@@ -10,8 +10,8 @@ class Knack < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.32.12/knack-0.32.12-aarch64-apple-darwin.tar.gz"
-      sha256 "fc5e50f170b45e4a179934ef8e3c7d41b9641d38088bb80a5f4e329ea5f46268"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/knack-0.32.13/knack-0.32.13-aarch64-apple-darwin.tar.gz"
+      sha256 "652f899c485dc847092ac12eadb022874930b2025f417b927d35e3da23a52fce"
     end
   end
 
@@ -28,7 +28,7 @@ class Knack < Formula
         knack lib migrate    # bring in the skills those agents already have
         knack lib status
 
-      Supported agents: claude, codex, gemini, qoder, qoderwork. Qoder (~/.qoder) and
+      Supported agents: claude, codex, qoder, qoderwork. Qoder (~/.qoder) and
       QoderWork (~/.qoderwork) are distinct products.
 
       Coming from 0.22 or earlier: `remove --agent` is now `unexport`. `export` gives a
