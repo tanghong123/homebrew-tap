@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine are compiled into one file and the
   # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.6.0/mdrev-0.6.0-macos.tar.gz"
-  sha256 "3b7168ef91b508d8ac6885d38a07b06cdd08a6f746ba76742e8c7dcdff6f585b"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.16.7/mdrev-0.16.7-macos.tar.gz"
+  sha256 "050b4505b05bb2af69d96963c860c5d91b474ed597791c188edd7c7106f960d2"
   license "MIT"
 
   depends_on :macos
@@ -12,13 +12,20 @@ class Mdrev < Formula
 
   def install
     # keep the bundle intact — mdrev.js resolves its vendored shiki and the web
-    # assets relative to itself — and expose only the launcher on PATH
+    # assets relative to itself — and expose only the launchers on PATH
     libexec.install Dir["*"]
-    (bin/"mdrev").write <<~SH
-      #!/bin/bash
-      exec "#{formula_opt_bin("node")}/node" "#{libexec}/mdrev.js" "$@"
-    SH
-    chmod 0755, bin/"mdrev"
+    # three commands from one tree: the viewer; mdrev-cli, the command line
+    # a host application calls for mdrev's store; and mdrev-v2, the sample
+    # host that serves a checkout with mdrev's guest inside its page
+    { "mdrev" => "mdrev.js", "mdrev-cli" => "mdrev-cli.js", "mdrev-v2" => "mdrev-v2.js" }.each do |name, entry|
+      next unless (libexec/entry).exist?
+
+      (bin/name).write <<~SH
+        #!/bin/bash
+        exec "#{formula_opt_bin("node")}/node" "#{libexec}/#{entry}" "$@"
+      SH
+      chmod 0755, bin/name
+    end
   end
 
   def caveats
@@ -43,6 +50,10 @@ class Mdrev < Formula
       mdrev ships the skill that teaches an agent to use it. knack runs the
       install itself, so adopting is the only step:
         knack lib adopt mdrev --via mdrev:$(mdrev skill recipe) --agent claude --yes
+
+      Embedding mdrev in an application of your own? The developer guide and
+      the sample host's source ship with it:
+        open #{opt_libexec}/docs/embedding-guide.html
 
       To open Markdown from Finder:
         mdrev --install-finder-app
