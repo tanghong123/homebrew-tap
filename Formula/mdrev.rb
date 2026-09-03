@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine are compiled into one file and the
   # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.16.9/mdrev-0.16.9-macos.tar.gz"
-  sha256 "c94eaaaaad7f1f73ee4078e3dfb2c7645efaae026d7017f113a888b0d105c395"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.16.10/mdrev-0.16.10-macos.tar.gz"
+  sha256 "2f3c5c2e05774c8279212b1b2d4d430408131de8631db6ddaa9aed222c47549f"
   license "MIT"
 
   depends_on :macos
@@ -39,6 +39,10 @@ class Mdrev < Formula
 
       The first mdrev starts one shared background viewer on port 4399; later
       files open in it, so every document shares a warm process and one cache.
+      It answers only this machine and only your account: the address mdrev
+      opens carries a key (kept at ~/.mdrev/token) that becomes a cookie, so
+      a bookmark without it works from then on. A tab that says it is "not
+      keyed" just needs one `mdrev <file>` again.
 
       Select text to annotate it, or to copy it with its source attached
       (shift-cmd-C) for pasting into another document.
