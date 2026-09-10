@@ -1,29 +1,29 @@
 class AgentMonitor < Formula
   desc "Every AI-agent session on this machine, one page, over loopback HTTP"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.249.0"
+  version "1.250.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.249.0/agent-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "380218417cc92c0892e6833048f45d1cb90019180585c13f03718dd6700951ad"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.250.0/agent-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "9f9dc53e9a8a29ebdcfb1575260cca109f239d8aa019313399b98ff2428a5889"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.249.0/agent-monitor-x86_64-apple-darwin.tar.gz"
-      sha256 "6ee0dd658b63898f64eae9138923ae0766fc877772ec732dcf598d8cb4cc1ce6"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.250.0/agent-monitor-x86_64-apple-darwin.tar.gz"
+      sha256 "f8d835d44b59df37539ea7944440fa07028b6d6b23c907df2d48e7fe436d6e58"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.249.0/agent-monitor-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "3b97e625aee6a48aeacf92ddded691e910ad2585a2db246cde776120346c10b8"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.250.0/agent-monitor-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "e5dbfe4e6039bea606dd8105d214cd15d0c88b7c2a31023f55224417bdb7aabd"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.249.0/agent-monitor-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "470f334aa09c33bb3b8fa61ff225e4ccd7640c2bf7aeedafc96f428ab4864bf6"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.250.0/agent-monitor-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "1e61e18a549c039b3148dbb221c79d166e786e7ecafd038871ba12a359f9309c"
     end
   end
 
