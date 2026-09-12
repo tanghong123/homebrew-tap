@@ -1,29 +1,29 @@
 class AgentReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.261.0"
+  version "1.262.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.261.0/agent-replay-aarch64-apple-darwin.tar.gz"
-      sha256 "3988c176e49f7a3ce9b4f5135105e1d6c55dbcde2a91d721f0e412dad69132f4"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.262.0/agent-replay-aarch64-apple-darwin.tar.gz"
+      sha256 "9e23c6a5046cf1b3b40a39ff76528f631e1b9f9ee6fa6cb8e0cff40b01f40665"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.261.0/agent-replay-x86_64-apple-darwin.tar.gz"
-      sha256 "36ac454e8f6ee259182c6c2ce0efa67803437b769cd0b4e7480c83ce42349cd7"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.262.0/agent-replay-x86_64-apple-darwin.tar.gz"
+      sha256 "59a550c5001350941ca782fb2d05e3a4092068424d56d161d89821c1f5bb622c"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.261.0/agent-replay-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "bd2f21e3eee57f59209ba81a345064f314c9d17a14e6225d71df99ccba363290"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.262.0/agent-replay-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "0a775c861583db39306b6c0d894ee862f2a2504a39c0043370697a6c2966912b"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.261.0/agent-replay-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "01eff0d615d1c4f63f48a7b8234da9e672bd91c67a6adfd426e82bcebeae99dd"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.262.0/agent-replay-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "8efca6666453c297e91bf8f0d07620530cdd29880f9b105458dd116231b2e097"
     end
   end
 
