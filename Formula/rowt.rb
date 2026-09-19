@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.3.tar.gz"
-  sha256 "f08a2f363d3183a97827e2176d4f0945a952b5d074085c891af45bdf22e75297"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.4.tar.gz"
+  sha256 "213b8fbcf0de69b782889be7d59029e0631e0471fa1d3a0cd29aeb493f4230f1"
   license "MIT"
 
   depends_on "jq"
@@ -14,8 +14,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.5.3/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "4a556f16137261a86826e79627047741b467a338863c7798776f04fbbc299d3a"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.5.4/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "70046d00c5716a26c54a32295f36e57069cfe5c219545281d396e1f295427de6"
     end
   end
   on_intel do
@@ -149,13 +149,13 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.5.3", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.5.4", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.5.3", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.5.4", shell_output("#{bin}/rowt-rust version")
   end
 end
