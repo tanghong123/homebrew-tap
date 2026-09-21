@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.5.tar.gz"
-  sha256 "6f5920496c20de2375756901cbaed81d71e4add49d756d24b0d749bada74bd12"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.6.tar.gz"
+  sha256 "127f554b977e46712bb1116145e6d0e89f5bf23b5161c541c252a336a7509a30"
   license "MIT"
 
   depends_on "jq"
@@ -14,8 +14,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.5.5/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "a95b3f075ebab063ccd153f259558f3a8d2e98e87a088230569c30a02a56a0e6"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.5.6/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "fbff1e6335bef8a0c32120161f7e58f0880ef0849595fd95f98e14b61b8b8006"
     end
   end
   on_intel do
@@ -74,14 +74,24 @@ class Rowt < Formula
   end
 
   def post_install
-    # If the auto-reload/watchdog LaunchAgent is installed, refresh it so this
-    # upgrade picks up the new version and clears any launchd backoff from the
-    # binary swap (its RunAtLoad tick also recovers a router that went down during
-    # the upgrade). `watch refresh` is sudo-free and a no-op when not installed;
-    # never let it fail the install.
-    system libexec/"bin/rowt", "watch", "refresh"
-  rescue StandardError
-    nil
+    # Refresh the auto-reload/watchdog LaunchAgent so this upgrade picks up the
+    # new version and clears any launchd backoff from the binary swap (its
+    # RunAtLoad tick also recovers a router that went down during the upgrade).
+    #
+    # HOME is scrubbed during post_install, and the agent lives under the user's
+    # real ~/Library/LaunchAgents — so with the inherited HOME, `watch refresh`
+    # looked at the wrong path, found nothing, and exited 0 ("nothing to
+    # refresh"). The AbandonProcessGroup fix then sat undelivered for two months
+    # (rowt 3.5.6, eceb642). Give it the real login home so it finds the real
+    # agent. A watchdog tick re-syncs the plist regardless, so this is the fast
+    # path, not the only one — and any failure is surfaced, not swallowed.
+    require "etc"
+    home = Etc.getpwuid(Process.uid).dir
+    with_env(HOME: home) do
+      system libexec/"bin/rowt", "watch", "refresh"
+    end
+  rescue => e
+    opoo "rowt watch refresh failed (#{e}); the watchdog re-syncs on its next tick, or run: rowt watch refresh"
   end
 
   def caveats
@@ -149,13 +159,13 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.5.5", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.5.6", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.5.5", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.5.6", shell_output("#{bin}/rowt-rust version")
   end
 end
