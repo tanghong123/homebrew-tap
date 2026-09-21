@@ -74,24 +74,15 @@ class Rowt < Formula
   end
 
   def post_install
-    # Refresh the auto-reload/watchdog LaunchAgent so this upgrade picks up the
-    # new version and clears any launchd backoff from the binary swap (its
-    # RunAtLoad tick also recovers a router that went down during the upgrade).
-    #
-    # HOME is scrubbed during post_install, and the agent lives under the user's
-    # real ~/Library/LaunchAgents — so with the inherited HOME, `watch refresh`
-    # looked at the wrong path, found nothing, and exited 0 ("nothing to
-    # refresh"). The AbandonProcessGroup fix then sat undelivered for two months
-    # (rowt 3.5.6, eceb642). Give it the real login home so it finds the real
-    # agent. A watchdog tick re-syncs the plist regardless, so this is the fast
-    # path, not the only one — and any failure is surfaced, not swallowed.
-    require "etc"
-    home = Etc.getpwuid(Process.uid).dir
-    with_env(HOME: home) do
-      system libexec/"bin/rowt", "watch", "refresh"
-    end
-  rescue => e
-    opoo "rowt watch refresh failed (#{e}); the watchdog re-syncs on its next tick, or run: rowt watch refresh"
+    # Deliberately does NOT reload the watchdog LaunchAgent. post_install runs
+    # sandboxed: it can `launchctl bootout` the agent but not `bootstrap` it back
+    # (verified 2026-09-21 — giving `watch refresh` the real HOME let it reach the
+    # bootout while the sandbox blocked the reload, leaving the watchdog unloaded
+    # after a plain `brew upgrade`). It does not need to: the running agent already
+    # runs the new binary through its ProgramArguments symlink, and that binary's
+    # next tick self-heals the plist to this version (rowt 3.5.6, eceb642).
+    # Touching launchd here only risks unloading it.
+    nil
   end
 
   def caveats
