@@ -4,10 +4,15 @@ class Rowt < Formula
   url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.8.tar.gz"
   sha256 "abf14dd40c2b503345a2e90c99c1c509211c33c3bf89904fa2f9bcf6eb1588c9"
   license "MIT"
+  # Formula-only fix: bundle the pinned sing-box (resources below) instead of
+  # depending on brew's floating one. rowt's code already expects the bundle
+  # (onboard reports "bundled (pinned)", README says the formula bundles it) — the
+  # formula was the piece behind. No rowt source changed, so bump the revision.
+  # REMOVE this line when the version next changes (a new version resets revision).
+  revision 1
 
   depends_on "jq"
   depends_on :macos
-  depends_on "sing-box"
 
   # The `rowt monitor` TUI is a small Rust/ratatui binary. On Apple Silicon we pour
   # a prebuilt one so installs need NO Rust toolchain (which would pull libgit2 etc.);
@@ -17,9 +22,21 @@ class Rowt < Formula
       url "https://github.com/tanghong123/rowt/releases/download/v3.5.8/rowt-monitor-aarch64-apple-darwin.tar.gz"
       sha256 "61e618f84f47e85f39f17ffa65718d44d0568ca2f534a7540234bd42506ffcdc"
     end
+    # The PINNED engine (SINGBOX_VERSION in bin/rowt). Bundling it means a brew
+    # install never inherits whatever version brew's own sing-box floats to — a
+    # `brew upgrade sing-box` to 1.14.x once swapped the CPU-spinning engine under
+    # rowt. Keep this url/sha256 in step with SINGBOX_VERSION on every bump.
+    resource "sing-box" do
+      url "https://github.com/SagerNet/sing-box/releases/download/v1.13.14/sing-box-1.13.14-darwin-arm64.tar.gz"
+      sha256 "73e8967b0fc08e17bce4263ca56ebc394822401a16497a1c4e02316c888202ab"
+    end
   end
   on_intel do
     depends_on "rust" => :build
+    resource "sing-box" do
+      url "https://github.com/SagerNet/sing-box/releases/download/v1.13.14/sing-box-1.13.14-darwin-amd64.tar.gz"
+      sha256 "5245d645e847f90bb708da74bc020ae078c28489690756419685c04f56b4e3bb"
+    end
   end
 
   def install
@@ -37,6 +54,14 @@ class Rowt < Formula
     # libexec/share/knack/rowt.toml under the stable opt prefix, which is what
     # `knack lib adopt rowt --via "rowt:$(rowt skill recipe)"` loads.
     libexec.install "share" if File.directory?("share")
+
+    # Bundle the pinned sing-box into libexec/bin next to bin/rowt, so
+    # `$HERE/bin/sing-box` — rowt's step-0 engine source — is the exact pin,
+    # present offline. rowt copies it into its own bin on the first render.
+    resource("sing-box").stage do
+      # stage may or may not descend into the tarball's top dir, so match both.
+      (libexec/"bin").install Dir["sing-box", "*/sing-box"].first
+    end
 
     # Put the read-only TUI companion in libexec/bin next to bin/rowt so
     # `rowt monitor` finds it (also symlinked onto PATH as `rowt-monitor`).
@@ -88,7 +113,7 @@ class Rowt < Formula
   def caveats
     s = <<~EOS
       First run:
-        rowt fetch          # download sing-box (or it uses the brew one)
+        rowt fetch          # (optional) refresh the engine — the pinned sing-box ships bundled
         rowt skill install  # (optional) link the rowt skill so an agent can drive setup
         rowt onboard        # guided setup — shows the next step
 
@@ -158,5 +183,10 @@ class Rowt < Formula
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
     assert_match "rowt 3.5.8", shell_output("#{bin}/rowt-rust version")
+    # The pinned engine ships in the bottle now, not via a floating brew sing-box.
+    # Assert it is present and IS the pin, so a bad resource sha/version fails here
+    # rather than at a user's first render.
+    assert_predicate libexec/"bin/sing-box", :executable?
+    assert_match "1.13.14", shell_output("#{libexec}/bin/sing-box version")
   end
 end
