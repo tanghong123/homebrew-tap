@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.7.tar.gz"
-  sha256 "e65cb357bcbef5ef421ab9673ddc533e158fd6e5ce997a9648243aec0611745c"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.8.tar.gz"
+  sha256 "abf14dd40c2b503345a2e90c99c1c509211c33c3bf89904fa2f9bcf6eb1588c9"
   license "MIT"
 
   depends_on "jq"
@@ -14,8 +14,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.5.7/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "3f864128a29e44d31c231c4c491573d0f51b379113a1dcf1fab7740a387c23cc"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.5.8/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "61e618f84f47e85f39f17ffa65718d44d0568ca2f534a7540234bd42506ffcdc"
     end
   end
   on_intel do
@@ -80,7 +80,7 @@ class Rowt < Formula
     # bootout while the sandbox blocked the reload, leaving the watchdog unloaded
     # after a plain `brew upgrade`). It does not need to: the running agent already
     # runs the new binary through its ProgramArguments symlink, and that binary's
-    # next tick self-heals the plist to this version (rowt 3.5.7, eceb642).
+    # next tick self-heals the plist to this version (rowt 3.5.8, 46feba8).
     # Touching launchd here only risks unloading it.
     nil
   end
@@ -150,13 +150,13 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.5.7", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.5.8", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.5.7", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.5.8", shell_output("#{bin}/rowt-rust version")
   end
 end
