@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.9.tar.gz"
-  sha256 "68106951c5f5e66a25877cbf82bc921d7c7ca3123cc5f1522d2aef1d60b7a92f"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.5.12.tar.gz"
+  sha256 "d0f4f3057f5715b61d91ae3c54c164548af6a2128f5cbb32e0b5b7625546f879"
   license "MIT"
 
   depends_on "jq"
@@ -13,8 +13,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.5.9/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "641d788f87f1d3bbb44461fa8d091de2dc5be2e938d880ed55d761bc5ce1048b"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.5.12/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "aa674cd5497efc7beb95dc985b20bed6e4bcf336a5dee8873729f23fa92c9079"
     end
     # The PINNED engine (SINGBOX_VERSION in bin/rowt). Bundling it means a brew
     # install never inherits whatever version brew's own sing-box floats to — a
@@ -169,14 +169,14 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.5.9", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.5.12", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.5.9", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.5.12", shell_output("#{bin}/rowt-rust version")
     # The pinned engine ships in the bottle now, not via a floating brew sing-box.
     # Assert it is present and IS the pin, so a bad resource sha/version fails here
     # rather than at a user's first render.
