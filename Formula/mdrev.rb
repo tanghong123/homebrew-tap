@@ -1,10 +1,10 @@
 class Mdrev < Formula
   desc "Review Markdown like code: git-history redlines with blame and notes"
   homepage "https://github.com/tanghong123/homebrew-tap"
-  # Prebuilt bundle: the CLI and engine are compiled into one file and the
-  # viewer ships as built assets. It runs on node rather than embedding it.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-0.16.45/mdrev-0.16.45-macos.tar.gz"
-  sha256 "ce94091b29608853a1025474bebd9a62a28216e8192157f2776817b978134357"
+  # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
+  # built assets. It runs ON node rather than embedding one.
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.12/mdrev-1.1.12-macos.tar.gz"
+  sha256 "e3b274d95230c85e1bc8727c653c0deab56de1f0b1a23228d65a9e4332b75192"
   license "MIT"
 
   depends_on :macos
@@ -14,10 +14,29 @@ class Mdrev < Formula
     # keep the bundle intact — mdrev.js resolves its vendored shiki and the web
     # assets relative to itself — and expose only the launchers on PATH
     libexec.install Dir["*"]
-    # three commands from one tree: the viewer; mdrev-cli, the command line
-    # a host application calls for mdrev's store; and mdrev-v2, the sample
-    # host that serves a checkout with mdrev's guest inside its page
-    { "mdrev" => "mdrev.js", "mdrev-cli" => "mdrev-cli.js", "mdrev-v2" => "mdrev-v2.js" }.each do |name, entry|
+    # `mdrev` ROUTES; it is not a viewer. The tarball ships a dispatcher beside
+    # the two of them, and writing a launcher straight to mdrev.js here would
+    # install the PREVIOUS viewer under the name whose job is to choose. So the
+    # command is a wrapper around it, carrying two things the plain launchers
+    # below do not need:
+    #   - the dispatcher's own marker line, because `mdrev --install-finder-app`
+    #     reads the launcher on PATH to decide whether it may bake --legacy into
+    #     a droplet; an mdrev from before the dispatcher exits 1 on that flag;
+    #   - node by absolute path, because a droplet runs `do shell script`, whose
+    #     PATH is /usr/bin:/bin and nothing else, so brew's node is not on it.
+    (bin/"mdrev").write <<~SH
+      #!/bin/bash
+      # mdrev-dispatch — this command routes between the two viewers
+      export MDREV_NODE="#{formula_opt_bin("node")}/node"
+      exec "#{libexec}/mdrev" "$@"
+    SH
+    chmod 0755, bin/"mdrev"
+
+    # and the three it chooses between or hands work to: mdrev-legacy, the
+    # viewer that renders server-side; mdrev-cli, the command line a host
+    # application calls for mdrev's store; and mdrev-v2, the newer viewer under
+    # its own name, which is also the sample host
+    { "mdrev-legacy" => "mdrev.js", "mdrev-cli" => "mdrev-cli.js", "mdrev-v2" => "mdrev-v2.js" }.each do |name, entry|
       next unless (libexec/entry).exist?
 
       (bin/name).write <<~SH
@@ -37,6 +56,11 @@ class Mdrev < Formula
         mdrev doc.md            # just read it
         mdrev --status          # is the shared viewer running?  --stop ends it
 
+      TWO VIEWERS, ONE COMMAND. mdrev opens the newer viewer, which
+      renders in your browser; `mdrev --legacy <file>` opens the original, which
+      renders server-side. Both are installed and both can run at once, on ports
+      of their own. `mdrev --legacy --help` lists what only the original has.
+
       The first mdrev starts one shared background viewer on port 4399; later
       files open in it, so every document shares a warm process and one cache.
       It answers only this machine and only your account: the address mdrev
@@ -46,6 +70,9 @@ class Mdrev < Formula
 
       Select text to annotate it, or to copy it with its source attached
       (press c) for pasting into another document.
+
+      Right-click a file or a folder in the left column to reveal it in Finder
+      or copy its path.
 
       Review notes can be closed from the viewer or the command line:
         mdrev --notes                  open notes across the repo
@@ -58,18 +85,19 @@ class Mdrev < Formula
       Embedding mdrev in an application of your own? The developer guide and
       the sample host's source ship with it:
         open #{opt_libexec}/docs/embedding-guide.html
+      (or take mdrev-embed-#{version}.tar.gz from the GitHub release, the kit
+      without the viewer app).
 
       To open Markdown from Finder:
         mdrev --install-finder-app
-      macOS will ask you to confirm mdrev as the default for .md files —
-      approve it. (Since macOS 12 no tool can set that silently.) If no dialog
-      appears: Get Info on a .md file > "Open with:" > mdrev > "Change All...".
+      macOS will ask you to confirm mdrev for .md files — approve it.
+      (Since macOS 12 no tool can set that silently.)
+      There is one app whichever viewer you pick, so switching never asks again:
+      run it with --legacy to pin double-clicks to the original.
     EOS
   end
 
   test do
-    (testpath/"a.md").write "# Title\n\nBody.\n"
     assert_match "mdrev", shell_output("#{bin}/mdrev --help")
-    assert_match "not running", shell_output("#{bin}/mdrev --status")
   end
 end
