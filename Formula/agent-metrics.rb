@@ -1,30 +1,30 @@
 class AgentMetrics < Formula
   desc "Usage metrics for every coding agent on a machine, built on claude-replay"
   homepage "https://github.com/tanghong123/homebrew-tap"
-  version "0.6.0"
+  version "0.6.1"
   license "MIT"
 
   # Binary-only distribution (the knack pattern): the source repository is
   # private; prebuilt binaries ship as release assets on this tap itself.
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.0/agent-metrics-0.6.0-aarch64-apple-darwin.tar.gz"
-      sha256 "69d9b0698fc03e0d3566a3ed1e5be683b649ef2379ce6a731ae748effdd1f6da"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.1/agent-metrics-0.6.1-aarch64-apple-darwin.tar.gz"
+      sha256 "d63fdde697ceee783e4e6a2dba818b02f4b4fb6e8d3864f1bf38ade818e70450"
     end
     on_intel do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.0/agent-metrics-0.6.0-x86_64-apple-darwin.tar.gz"
-      sha256 "5fa11e800f4e9446806fa064688adcb35849319ef65b2c17dd9323ccfb053e7e"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.1/agent-metrics-0.6.1-x86_64-apple-darwin.tar.gz"
+      sha256 "caa8eac4cd7d62296e0d355744a72180e9612e32d3bbc011064c95f2f1f865f7"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.0/agent-metrics-0.6.0-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "e152f2d1e120d776ad61d00182af6a95abfb4d991c1f5ca0175a2fb9738a301f"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.1/agent-metrics-0.6.1-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "28cdd6d6747e5395db9486562b0016dfd077cd83130c05bd61d7195fc4fed26c"
     end
     on_intel do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.0/agent-metrics-0.6.0-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "1032b034413cd68700c0b0df321580f38d531176f61f752bd0817af3a20bbfc1"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/agent-metrics-0.6.1/agent-metrics-0.6.1-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "a3cb155aa8a384244d44dfc933a841cc908cc83eeb14949854bd96317d258783"
     end
   end
 
