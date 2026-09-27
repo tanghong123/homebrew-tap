@@ -2,6 +2,9 @@ class Knack < Formula
   desc "One library of coding-agent skills, projected into every agent you use"
   homepage "https://github.com/tanghong123/homebrew-tap"
   license any_of: ["Apache-2.0", "MIT"]
+  revision 1
+
+  deprecate! date: "2026-09-28", because: "is no longer published in this tap (0.32.13 is its last release here)"
 
   # Only an Apple Silicon build is published so far. Without these, an unsupported
   # platform fails with a confusing "no url" rather than saying what is wrong.
@@ -21,6 +24,11 @@ class Knack < Formula
 
   def caveats
     <<~EOS
+      This tap no longer receives knack releases: 0.32.13 is its last. Newer releases
+      are published through a company channel only. If your machine gets knack from
+      there, remove this copy (brew uninstall knack) and install it the way your
+      team's setup instructions say.
+
       knack shells out to the system git for anything networked, so git must be on PATH.
 
       Getting started:
