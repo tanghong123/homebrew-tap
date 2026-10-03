@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
   # built assets. It runs ON node rather than embedding one.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.17/mdrev-1.1.17-macos.tar.gz"
-  sha256 "8c6d74d9a531b7ed096e46884dcafab650db0c01e0e46e633bcaa4a7bb203317"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.18/mdrev-1.1.18-macos.tar.gz"
+  sha256 "670128ff53f05fe57db826c374c5e41ffd9c0063e34acc55e26ee6b5250ea6ee"
   license "MIT"
 
   depends_on :macos
@@ -78,6 +78,11 @@ class Mdrev < Formula
         mdrev --notes                  open notes across the repo
         mdrev --resolve ID --note "…"  close one
 
+      Reviewers on different machines can share threads about a document.
+      Pair this machine once, through your agent ("set up shared review")
+      or in your own terminal:
+        mdrev --review-pair
+
       mdrev ships the skill that teaches an agent to use it. knack runs the
       install itself, so adopting is the only step:
         knack lib adopt mdrev --via mdrev:$(mdrev skill recipe) --agent claude --yes
@@ -94,6 +99,8 @@ class Mdrev < Formula
       (Since macOS 12 no tool can set that silently.)
       There is one app whichever viewer you pick, so switching never asks again:
       run it with --legacy to pin double-clicks to the original.
+      An upgrade does not rebuild the app: if one built before 1.1.18 opens
+      a document whose files rail then stops answering, run it again.
     EOS
   end
 
