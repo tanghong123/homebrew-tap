@@ -1,18 +1,18 @@
 class Steward < Formula
   desc "Check a dev box against a plan's step headers"
   homepage "https://github.com/tanghong123/homebrew-tap"
-  version "0.4.0"
+  version "0.4.1"
 
   # Binary-only distribution: the source repository is private; prebuilt binaries ship as release assets on this
   # tap itself.
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/steward-0.4.0/steward-0.4.0-aarch64-apple-darwin.tar.gz"
-      sha256 "7ebfd5a2eba0a94a98b7daccfc69889d61030c63bb11e0312aa7af494385e35c"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/steward-0.4.1/steward-0.4.1-aarch64-apple-darwin.tar.gz"
+      sha256 "a27a974acf5dd082534a5dc6c2614c6c759612417296a172b809314fee017976"
     end
     on_intel do
-      url "https://github.com/tanghong123/homebrew-tap/releases/download/steward-0.4.0/steward-0.4.0-x86_64-apple-darwin.tar.gz"
-      sha256 "6cc36a6e899b8a9f84d33e64ebe1bc8cf1429ddc511f8e3f1148891054926378"
+      url "https://github.com/tanghong123/homebrew-tap/releases/download/steward-0.4.1/steward-0.4.1-x86_64-apple-darwin.tar.gz"
+      sha256 "c93634e4a37259440351b759d8baba8a2450d537800c39a61328f3f073b75692"
     end
   end
 
