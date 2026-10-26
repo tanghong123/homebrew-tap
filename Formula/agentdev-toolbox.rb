@@ -1,8 +1,8 @@
 class AgentdevToolbox < Formula
   desc "Scripts a Mac for coding agents is set up from: bootstrap, power, cleanup"
   homepage "https://github.com/tanghong123/homebrew-tap"
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/agentdev-toolbox-0.3.0/agentdev-toolbox-0.3.0.tar.gz"
-  sha256 "bb4e340d901474a7d0f38c230947f6688bb4fb7d8028e628297664a91864552f"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/agentdev-toolbox-0.4.0/agentdev-toolbox-0.4.0.tar.gz"
+  sha256 "1c8170100933d138b73ecf6496dd0718219e17ac6c40e564c3f663e42589ffab"
 
   depends_on :macos
 
