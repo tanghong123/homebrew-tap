@@ -142,6 +142,12 @@ class Rowt < Formula
         rowt up local       # no tunnel; block/corp/direct unchanged
                             # (a bare `rowt up` picks this by itself)
         rowt up host        # back to the tunnel
+
+      A VM, a container or one app that should tunnel everything unlisted,
+      while the Mac itself keeps going direct? Give it its own port: the same
+      rules as 127.0.0.1:7890, only the catch-all differs.
+        rowt port add 7892 guest --final escape
+        rowt port list      # every port, main first; `rowt port rm guest` removes it
     EOS
     # Apple Silicon only — Intel builds the monitor from source and gets
     # neither the shadow sidecars nor rowt-rust (the precedent 3.2.7 set).
