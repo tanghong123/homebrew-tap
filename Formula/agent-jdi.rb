@@ -1,30 +1,30 @@
 class AgentJdi < Formula
   desc "Supervise unattended AI-agent (Claude, Codex) runs and follow them live"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.447.0"
+  version "1.448.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
   depends_on "tanghong123/tap/agent-replay"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.447.0/agent-jdi-aarch64-apple-darwin.tar.gz"
-      sha256 "658b2046998750555fe6cbde3ded103eeec97138414115bca9c41433792cda42"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.448.0/agent-jdi-aarch64-apple-darwin.tar.gz"
+      sha256 "296a778d793e2beb736591662c2fbe5ef422607fee05f2a5cdde8d1578d8977f"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.447.0/agent-jdi-x86_64-apple-darwin.tar.gz"
-      sha256 "f452c289c1f5774ecb7d631bf3d0ee81c33b6c0b56a4e4edf91d457c42d8bf37"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.448.0/agent-jdi-x86_64-apple-darwin.tar.gz"
+      sha256 "9814c7ceb699d1dedec6af401a201562a9da22e2791e5b3096f173b57be456f2"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.447.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "0c52172bfdca3e1e0714839e9b65ab6b5702f37897c8f71f99a6f01d03473697"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.448.0/agent-jdi-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "7722b5e113637abe29c7090e4256f56d13ae0f007472b1a2b78389b4864ce836"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.447.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "85e4aee10ba893501866c112253bd4d37b8f2b0efe473322bba5c15d245ff5fd"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.448.0/agent-jdi-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "e206b24eb9a3a715446e3f56992db388dca878a83054535276a3a50d70b53feb"
     end
   end
 
