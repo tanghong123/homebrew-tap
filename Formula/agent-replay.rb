@@ -1,36 +1,34 @@
 class AgentReplay < Formula
   desc "Interactive, read-only viewer for Claude Code session transcripts"
   homepage "https://github.com/tanghong123/claude-replay"
-  version "1.457.0"
+  version "1.458.0"
   license "MIT"
   head "https://github.com/tanghong123/claude-replay.git", branch: "main"
 
   on_macos do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.457.0/agent-replay-aarch64-apple-darwin.tar.gz"
-      sha256 "5b0bb60a73b501ebae6fff444b5dcb80386166876f5f75d2715e236a33686e67"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.458.0/agent-replay-aarch64-apple-darwin.tar.gz"
+      sha256 "c005c3030d3e21c776d045ce4f846b2f1e4e670c853adb38c77a3cab5e4785b1"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.457.0/agent-replay-x86_64-apple-darwin.tar.gz"
-      sha256 "1ecbc7e95604b8d9a9f1c5baae4115a9288284df220daeaed21977da8729b477"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.458.0/agent-replay-x86_64-apple-darwin.tar.gz"
+      sha256 "ee5a453f885ec0f26dcf0cc10de6ad904d40265cd11ea71a7875b36478cfb940"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.457.0/agent-replay-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "961db381bd56cf786a0166d84d0e64e4cc77bee985a42ef4095f2e32911b06a3"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.458.0/agent-replay-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "28e8417bbaebc42e647b3a1585c9584828acdea4edb7c6867a1e70f5702a4d86"
     end
     on_intel do
-      url "https://github.com/tanghong123/claude-replay/releases/download/v1.457.0/agent-replay-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "a5a0f76f3f1a4586aea6b15522a8dc7a76665adfa44e65b173da745d697483b4"
+      url "https://github.com/tanghong123/claude-replay/releases/download/v1.458.0/agent-replay-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "3c10ac62b7ed8514249942bde5989080c276ccbf08826e920fac751279fcbcf3"
     end
   end
 
   def install
     bin.install "agent-replay"
-    # Rename transition (v1.101.0): the old name keeps working as a symlink.
-    bin.install_symlink bin/"agent-replay" => "claude-replay"
   end
 
   test do
