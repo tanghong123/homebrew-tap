@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
   # built assets. It runs ON node rather than embedding one.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.74/mdrev-1.1.74-macos.tar.gz"
-  sha256 "310d8baa74a6aec6dab45d4c9097f111e2ba4e0c138e7954ebb5c8a076971893"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.75/mdrev-1.1.75-macos.tar.gz"
+  sha256 "4760e59bfb0e6bb0467d25d5ba5656329b4117948f87df92977403e971cfd053"
   license "MIT"
 
   depends_on :macos
