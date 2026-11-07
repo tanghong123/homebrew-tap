@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
   # built assets. It runs ON node rather than embedding one.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.77/mdrev-1.1.77-macos.tar.gz"
-  sha256 "125407eefb91465cabfd9380387791ad98dec3a577ac80c509be6fde2596bacd"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.78/mdrev-1.1.78-macos.tar.gz"
+  sha256 "19f4358e3393578b61036c375f85902c394f94a01e77335126d8cf82ce024f44"
   license "MIT"
 
   depends_on :macos
@@ -53,6 +53,8 @@ class Mdrev < Formula
 
         mdrev doc.md --last 3   # the file's last three changes, as a redline
         mdrev doc.md            # just read it
+        mdrev                   # mdrev itself: its guide's Getting started the first time
+        mdrev --guide           # mdrev's own guide, any time
         mdrev --status          # is the shared viewer running?  --stop ends it
 
       The viewer renders in your browser. The first mdrev starts one shared
