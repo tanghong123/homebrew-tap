@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.8.40.tar.gz"
-  sha256 "6f8057160983f8520b4807117a0dcd441ea18690a7c9a4f31b9848c2e2c929c0"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.9.0.tar.gz"
+  sha256 "d423baf0ae34b84529b300fc7dcf471e3da55ea6fb62bf6b247dade6b1b746a9"
   license "MIT"
 
   depends_on "jq"
@@ -17,8 +17,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.8.40/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "be4b9c460e322a91de0d082fef0afd402eb893c4012b9c4a6862a48d3acd95d5"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.9.0/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "629df4c1319583906ead1b72376e4311ca08a575eb56df20d761373866bd32cf"
     end
     # The PINNED engine (SINGBOX_VERSION in bin/rowt). Bundling it means a brew
     # install never inherits whatever version brew's own sing-box floats to — a
@@ -153,18 +153,15 @@ class Rowt < Formula
         rowt port add 7892 guest --final escape
         rowt port list      # every port, main first; `rowt port rm guest` removes it
     EOS
-    # Apple Silicon only — Intel builds the monitor from source and gets
-    # neither the shadow sidecars nor rowt-rust (the precedent 3.2.7 set).
-    if Hardware::CPU.arm?
-      s += <<~EOS
+    # Both architectures: since 3.9.0 `rowt` runs rowt-rs, which the arm branch
+    # pours and the Intel branch builds, so the way back applies to every install.
+    s += <<~EOS
 
-        Preview: `rowt-rust` is this same CLI in Rust, installed beside `rowt`.
-        Nothing runs it for you and `rowt` does not delegate to it — run the two
-        side by side on the same config and compare:
-          rowt status   ·   rowt-rust status
-        If they ever disagree, that is worth reporting.
-      EOS
-    end
+      `rowt` runs its Rust CLI (rowt-rs, also on PATH as `rowt-rust`) since 3.9.0.
+      If a command misbehaves, `ROWT_IMPL=bash rowt <command>` runs the shell
+      version; `ROWT_IMPL=bash rowt watch refresh` puts the watchdog on it too,
+      and `ROWT_IMPL=rust rowt watch refresh` moves it back.
+    EOS
     # post_install deliberately leaves the watchdog LaunchAgent alone (see
     # post_install): the running agent already runs the new binary through its
     # symlink and self-heals the plist on its next tick. If a Mac's agent is
@@ -181,14 +178,14 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.8.40", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.9.0", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.8.40", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.9.0", shell_output("#{bin}/rowt-rust version")
     # The pinned engine ships in the bottle now, not via a floating brew sing-box.
     # Assert it is present and IS the pin, so a bad resource sha/version fails here
     # rather than at a user's first render.
