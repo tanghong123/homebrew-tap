@@ -1,8 +1,8 @@
 class Rowt < Formula
   desc "Split traffic three ways on macOS alongside a corporate VPN"
   homepage "https://github.com/tanghong123/rowt"
-  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.9.0.tar.gz"
-  sha256 "d423baf0ae34b84529b300fc7dcf471e3da55ea6fb62bf6b247dade6b1b746a9"
+  url "https://github.com/tanghong123/rowt/archive/refs/tags/v3.10.1.tar.gz"
+  sha256 "3b86eca0b260ff0a6504ae15ce1354ebe0fc57b7532e93832a3ffd1c05a8d71b"
   license "MIT"
 
   depends_on "jq"
@@ -17,8 +17,8 @@ class Rowt < Formula
   # on Intel we still build it from source.
   on_arm do
     resource "rowt-monitor" do
-      url "https://github.com/tanghong123/rowt/releases/download/v3.9.0/rowt-monitor-aarch64-apple-darwin.tar.gz"
-      sha256 "629df4c1319583906ead1b72376e4311ca08a575eb56df20d761373866bd32cf"
+      url "https://github.com/tanghong123/rowt/releases/download/v3.10.1/rowt-monitor-aarch64-apple-darwin.tar.gz"
+      sha256 "0dadd4759840852fef516eeea3ce44012d14b44ad3dab3ea18bdd31504f169d3"
     end
     # The PINNED engine (SINGBOX_VERSION in bin/rowt). Bundling it means a brew
     # install never inherits whatever version brew's own sing-box floats to — a
@@ -152,6 +152,14 @@ class Rowt < Formula
       rules as 127.0.0.1:7890, only the catch-all differs.
         rowt port add 7892 guest --final escape
         rowt port list      # every port, main first; `rowt port rm guest` removes it
+
+      A name that a geosite set sends through the escape server, but that
+      should go straight out? Put it in the direct lane (npm's registry ships
+      there since 3.10):
+        rowt direct add example.com
+        rowt direct list    # `rowt direct rm <name>` takes it out again
+      Upgrading from a rowt before 3.10? Run `rowt reload` once, so the running
+      router uses the direct lane.
     EOS
     # Both architectures: since 3.9.0 `rowt` runs rowt-rs, which the arm branch
     # pours and the Intel branch builds, so the way back applies to every install.
@@ -178,14 +186,14 @@ class Rowt < Formula
   end
 
   test do
-    assert_match "rowt 3.9.0", shell_output("#{bin}/rowt version")
+    assert_match "rowt 3.10.1", shell_output("#{bin}/rowt version")
     # The port bakes its version from bin/rowt at BUILD time, so a mismatch
     # here means the prebuilt asset and the source tarball came from different
     # commits — which is exactly the mistake worth catching before a user does.
     # No longer arm-only: since 3.3.7 the Intel branch builds rowt-rs too,
     # because bin/rowt needs it and python@3.12 is no longer there to fall back
     # on. If that build path is broken, this is what says so.
-    assert_match "rowt 3.9.0", shell_output("#{bin}/rowt-rust version")
+    assert_match "rowt 3.10.1", shell_output("#{bin}/rowt-rust version")
     # The pinned engine ships in the bottle now, not via a floating brew sing-box.
     # Assert it is present and IS the pin, so a bad resource sha/version fails here
     # rather than at a user's first render.
