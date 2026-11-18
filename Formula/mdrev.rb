@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
   # built assets. It runs ON node rather than embedding one.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.84/mdrev-1.1.84-macos.tar.gz"
-  sha256 "f374c2e49f1d8441044892f786c328e5f88369521a10cb4485f0a3ceaf06fa41"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.85/mdrev-1.1.85-macos.tar.gz"
+  sha256 "d391870988f5ab1b14efb90e0399394b49c8972bc38a314794760b0dee886426"
   license all_of: ["MIT", "OFL-1.1"]
 
   depends_on :macos
@@ -99,8 +99,8 @@ class Mdrev < Formula
       macOS will ask you to confirm mdrev for .md files — approve it.
       (Since macOS 12 no tool can set that silently.)
       Running it again rebuilds the same app, so macOS asks only once.
-      An upgrade does not rebuild the app: if one built before 1.1.18 opens
-      a document whose files rail then stops answering, run it again.
+      After an upgrade, the next `mdrev` you run in a terminal brings an app
+      you have up to date with no dialog; it never adds one you removed.
     EOS
   end
 
