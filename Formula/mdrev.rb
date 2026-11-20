@@ -3,8 +3,8 @@ class Mdrev < Formula
   homepage "https://github.com/tanghong123/homebrew-tap"
   # Prebuilt bundle: the CLI and engine compiled into one file plus the viewer's
   # built assets. It runs ON node rather than embedding one.
-  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.85/mdrev-1.1.85-macos.tar.gz"
-  sha256 "d391870988f5ab1b14efb90e0399394b49c8972bc38a314794760b0dee886426"
+  url "https://github.com/tanghong123/homebrew-tap/releases/download/mdrev-1.1.86/mdrev-1.1.86-macos.tar.gz"
+  sha256 "eaa886db364f4d705f3a41e86ac441688b2c6fc5fd1a64ac9534ef21ba4a832c"
   license all_of: ["MIT", "OFL-1.1"]
 
   depends_on :macos
@@ -96,9 +96,12 @@ class Mdrev < Formula
 
       To open Markdown from Finder:
         mdrev --install-finder-app
-      macOS will ask you to confirm mdrev for .md files — approve it.
-      (Since macOS 12 no tool can set that silently.)
-      Running it again rebuilds the same app, so macOS asks only once.
+      It then says whether mdrev is the default app for .md files. macOS may
+      ask you to confirm mdrev as the default app; if it asks and you want
+      mdrev as the default, approve it. To check, double-click a .md file in
+      Finder: if it opens in mdrev, you're done. Otherwise: Get Info on a .md
+      file -> "Open with:" -> mdrev -> "Change All...".
+      Running it again rebuilds the same app.
       After an upgrade, the next `mdrev` you run in a terminal brings an app
       you have up to date with no dialog; it never adds one you removed.
     EOS
